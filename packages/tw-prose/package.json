@@ -4,12 +4,13 @@
   "description": "CSS-only version of Tailwind Typography plugin (v4) with all prose variants",
   "main": "index.css",
   "files": [
-    "index.css"
+    "index.css",
+    "dist/index.css"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kgridou/tailwind-typography.git",
-    "directory": "packages/tailwind-typography"
+    "directory": "packages/tw-prose"
   },
   "keywords": [
     "tailwindcss",
@@ -25,7 +26,7 @@
   },
   "homepage": "https://github.com/kgridou/tailwind-typography#readme",
   "scripts": {
-    "build": "cp src/index.css dist/index.css",
+    "build": "if not exist dist mkdir dist && copy index.css dist\\index.css",
     "prepublishOnly": "npm run build"
   }
 }
