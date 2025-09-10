@@ -36,8 +36,8 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 
 ### Key Files
 
-- `packages/tailwind-typography/src/typography.css` - Source CSS file with all prose styling variants
-- `packages/tailwind-typography/dist/typography.css` - Built/published CSS file
+- `packages/tailwind-typography/src/index.css` - Source CSS file with all prose styling variants
+- `packages/tailwind-typography/dist/index.css` - Built/published CSS file
 - `apps/demo/index.html` - Demo page showcasing all typography sizes
 - `apps/demo/src/main.css` - Demo app styles that import the core library
 
@@ -49,7 +49,7 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 
 ### CSS Structure
 
-The `typography.css` file is organized as follows:
+The `index.css` file is organized as follows:
 
 1. **Base Prose Styles** (lines 1-490) - Default `.prose` class with comprehensive styling for:
    - Typography elements (headings, paragraphs, links, etc.)

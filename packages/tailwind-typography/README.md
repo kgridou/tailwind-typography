@@ -20,13 +20,13 @@ npm install tailwind-typography
 ### Direct CSS Import
 
 ```css
-@import "tailwind-typography/typography.css";
+@import "tailwind-typography/index.css";
 ```
 
 ### HTML Link
 
 ```html
-<link rel="stylesheet" href="./node_modules/tailwind-typography/typography.css" />
+<link rel="stylesheet" href="./node_modules/tailwind-typography/index.css" />
 ```
 
 ### With Vite and Tailwind CSS v4

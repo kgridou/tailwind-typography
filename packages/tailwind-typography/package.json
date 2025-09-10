@@ -2,9 +2,9 @@
   "name": "tailwind-typography",
   "version": "1.0.0",
   "description": "CSS-only version of Tailwind Typography plugin (v4) with all prose variants",
-  "main": "typography.css",
+  "main": "index.css",
   "files": [
-    "typography.css"
+    "index.css"
   ],
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/kgridou/tailwind-typography#readme",
   "scripts": {
-    "build": "cp src/typography.css dist/typography.css",
+    "build": "cp src/index.css dist/index.css",
     "prepublishOnly": "npm run build"
   }
 }
