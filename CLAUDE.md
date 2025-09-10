@@ -49,23 +49,22 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 
 ### CSS Structure
 
-The `index.css` file is organized as follows:
+The `index.css` file (872 lines) is organized using Tailwind v4's `@utility` directive as follows:
 
-1. **Base Prose Styles** (lines 1-490) - Default `.prose` class with comprehensive styling for:
-   - Typography elements (headings, paragraphs, links, etc.)
-   - Lists (ordered/unordered with various type attributes)
-   - Code blocks and inline code
-   - Tables and figures
-   - Block quotes and definition lists
+1. **Base Prose Utility** (lines 8-627) - `@utility prose` with comprehensive styling for:
+   - CSS custom properties for light/dark theme variables (lines 10-47)
+   - Typography elements (headings, paragraphs, links, lists, etc.)
+   - Code blocks and inline code with syntax highlighting support
+   - Tables, figures, and interactive elements
+   - Block quotes, definition lists, and semantic HTML elements
 
-2. **CSS Variables** (lines 451-490) - Complete set of theme variables for both light and dark modes:
-   - `--tw-prose-*` variables for light theme
-   - `--tw-prose-invert-*` variables for dark theme
+2. **Size Variants** - Each implemented using `@utility` directive:
+   - `@utility prose-sm` (lines 628-683) - Compact typography (0.875rem base)
+   - `@utility prose-lg` (lines 684-739) - Large typography (1.125rem base)
+   - `@utility prose-xl` (lines 740-795) - Extra large typography (1.25rem base)
+   - `@utility prose-2xl` (lines 796-852) - 2X large typography (1.5rem base)
 
-3. **Size Variants** - Each size variant (sm, lg, xl, 2xl) includes:
-   - Font size and line height adjustments
-   - Proportional spacing modifications
-   - Element-specific overrides
+3. **Dark Mode Support** (lines 853-872) - `@utility prose-invert` that switches CSS variables for dark themes
 
 ### Styling Approach
 
@@ -76,9 +75,23 @@ The `index.css` file is organized as follows:
 
 ### Development Notes
 
-- Monorepo structure using npm workspaces
-- Core library in `packages/tw-prose` with simple build step (copy src to dist)
-- Demo app uses Vite with Tailwind CSS v4 integration via `@tailwindcss/vite` plugin
-- The project uses Husky for git hooks with lint-staged for automatic formatting
-- Prettier configuration is minimal (empty object in `.prettierrc`)
-- Core typography library is pure CSS, demo app showcases integration with Tailwind v4
+- **Monorepo Structure**: Uses npm workspaces with `packages/*` and `apps/*` pattern
+- **Core Library Build**: Simple Node.js script copies `index.css` to `dist/index.css` for publishing
+- **Demo App**: Vite-powered with Tailwind CSS v4 via `@tailwindcss/vite` plugin integration
+- **Code Quality**: Husky pre-commit hooks run `lint-staged` for automatic Prettier formatting
+- **Styling Architecture**: Uses Tailwind v4's `@utility` directive instead of traditional CSS classes
+- **Theme System**: Leverages CSS custom properties with Tailwind v4 color variables (--color-gray-\*)
+- **Package Dependencies**: Demo app uses local file dependency (`file:../../packages/tw-prose`)
+
+### Build Process
+
+- **Library**: `npm run build --workspace=packages/tw-prose` copies source to dist folder
+- **Demo**: Standard Vite build process with Tailwind v4 processing
+- **Publishing**: `prepublishOnly` script ensures dist folder exists before npm publish
+
+# important-instruction-reminders
+
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (\*.md) or README files. Only create documentation files if explicitly requested by the User.
