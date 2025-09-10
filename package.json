@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kgridou/tailwind-typography.git"
+    "url": "git+https://github.com/gridatek/tailwind-typography.git"
   },
   "keywords": [
     "tailwindcss",
@@ -24,9 +24,9 @@
   "author": "Khalil LAGRIDA",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kgridou/tailwind-typography/issues"
+    "url": "https://github.com/gridatek/tailwind-typography/issues"
   },
-  "homepage": "https://github.com/kgridou/tailwind-typography#readme",
+  "homepage": "https://github.com/gridatek/tailwind-typography#readme",
   "devDependencies": {
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",

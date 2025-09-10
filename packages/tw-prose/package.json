@@ -1,6 +1,6 @@
 {
   "name": "tw-prose",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "CSS-only version of Tailwind Typography plugin (v4) with all prose variants",
   "main": "index.css",
   "files": [
@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kgridou/tailwind-typography.git",
+    "url": "git+https://github.com/gridatek/tailwind-typography.git",
     "directory": "packages/tw-prose"
   },
   "keywords": [
@@ -22,9 +22,9 @@
   "author": "Khalil LAGRIDA",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kgridou/tailwind-typography/issues"
+    "url": "https://github.com/gridatek/tailwind-typography/issues"
   },
-  "homepage": "https://github.com/kgridou/tailwind-typography#readme",
+  "homepage": "https://github.com/gridatek/tailwind-typography#readme",
   "scripts": {
     "build": "node -e \"const fs = require('fs'); fs.mkdirSync('dist', {recursive: true}); fs.copyFileSync('index.css', 'dist/index.css');\"",
     "prepublishOnly": "npm run build"
