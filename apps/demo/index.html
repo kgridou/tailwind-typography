@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Typography v4 Demo</title>
+    <link rel="stylesheet" href="./src/main.css" />
+  </head>
+  <body class="bg-slate-50 font-sans">
+    <div class="container mx-auto px-4 py-8">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-slate-900 mb-4">
+          Tailwind Typography v4
+        </h1>
+        <p class="text-xl text-slate-600">
+          CSS-only typography plugin with all prose variants
+        </p>
+      </header>
+
+      <div class="grid gap-8 md:gap-12">
+        <section
+          class="bg-white rounded-lg shadow-sm border border-slate-200 p-8"
+        >
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <h2 class="text-lg font-semibold text-slate-900">prose-sm</h2>
+            <span class="text-sm text-slate-500"
+              >Compact text for dense layouts</span
+            >
+          </div>
+          <article class="prose-sm">
+            <h1>Small Typography</h1>
+            <p>
+              This is the small typography variant, perfect for compact designs
+              where space is at a premium. The text is smaller but still
+              maintains excellent readability.
+            </p>
+            <h2>Features</h2>
+            <ul>
+              <li>Compact spacing</li>
+              <li>Smaller font sizes</li>
+              <li>Ideal for dense layouts</li>
+            </ul>
+            <blockquote>
+              <p>Sometimes less is more, and prose-sm delivers exactly that.</p>
+            </blockquote>
+          </article>
+        </section>
+
+        <section
+          class="bg-white rounded-lg shadow-sm border border-slate-200 p-8"
+        >
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+            <h2 class="text-lg font-semibold text-slate-900">prose</h2>
+            <span class="text-sm text-slate-500"
+              >Default balanced typography</span
+            >
+          </div>
+          <article class="prose">
+            <h1>Default Typography</h1>
+            <p>
+              This is the default typography variant, perfectly balanced for
+              most reading experiences. It provides optimal readability with
+              comfortable spacing and font sizes.
+            </p>
+            <h2>What makes it great</h2>
+            <p>
+              The default prose styling strikes the perfect balance between
+              readability and visual appeal:
+            </p>
+            <ul>
+              <li>Optimal line height for easy reading</li>
+              <li>Comfortable margins and padding</li>
+              <li>Perfect for articles and blog posts</li>
+            </ul>
+            <code>console.log('This is inline code')</code>
+            <pre><code>// This is a code block
+function greet(name) {
+  return `Hello, ${name}!`;
+}</code></pre>
+          </article>
+        </section>
+
+        <section
+          class="bg-white rounded-lg shadow-sm border border-slate-200 p-8"
+        >
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+            <h2 class="text-lg font-semibold text-slate-900">prose-lg</h2>
+            <span class="text-sm text-slate-500">Spacious and comfortable</span>
+          </div>
+          <article class="prose-lg">
+            <h1>Large Typography</h1>
+            <p>
+              The large typography variant is great for more spacious designs
+              where you want to give your content room to breathe. Perfect for
+              landing pages and feature articles.
+            </p>
+            <h2>Key benefits</h2>
+            <ul>
+              <li>Generous white space</li>
+              <li>Larger, more prominent headings</li>
+              <li>Enhanced visual hierarchy</li>
+            </ul>
+            <blockquote>
+              <p>
+                Space is not empty; it's full of possibilities for better
+                typography.
+              </p>
+            </blockquote>
+          </article>
+        </section>
+
+        <section
+          class="bg-white rounded-lg shadow-sm border border-slate-200 p-8"
+        >
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+            <h2 class="text-lg font-semibold text-slate-900">prose-xl</h2>
+            <span class="text-sm text-slate-500"
+              >Perfect for long-form content</span
+            >
+          </div>
+          <article class="prose-xl">
+            <h1>Extra Large Typography</h1>
+            <p>
+              Perfect for blog posts or long-form content where readability is
+              paramount. This variant provides maximum comfort for extended
+              reading sessions.
+            </p>
+            <h2>Ideal use cases</h2>
+            <ul>
+              <li>Blog posts and articles</li>
+              <li>Documentation</li>
+              <li>Long-form content</li>
+            </ul>
+          </article>
+        </section>
+
+        <section
+          class="bg-white rounded-lg shadow-sm border border-slate-200 p-8"
+        >
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+            <h2 class="text-lg font-semibold text-slate-900">prose-2xl</h2>
+            <span class="text-sm text-slate-500">Bold and impactful</span>
+          </div>
+          <article class="prose-2xl">
+            <h1>Huge Typography</h1>
+            <p>
+              Big and bold reading experience for when you want to make a
+              statement. This variant commands attention and is perfect for hero
+              content.
+            </p>
+            <h2>When to use</h2>
+            <ul>
+              <li>Hero sections</li>
+              <li>Feature announcements</li>
+              <li>High-impact content</li>
+            </ul>
+          </article>
+        </section>
+      </div>
+
+      <footer class="text-center mt-16 pt-8 border-t border-slate-200">
+        <p class="text-slate-500">
+          Built with
+          <a
+            href="https://tailwindcss.com/docs/installation/using-vite"
+            class="text-blue-600 hover:text-blue-800 underline"
+            >Tailwind CSS v4</a
+          >
+          and custom typography styles
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "tailwind-typography",
+  "version": "1.0.0",
+  "description": "CSS-only version of Tailwind Typography plugin (v4) with all prose variants",
+  "main": "typography.css",
+  "files": [
+    "typography.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kgridou/tailwind-typography.git",
+    "directory": "packages/tailwind-typography"
+  },
+  "keywords": [
+    "tailwindcss",
+    "typography",
+    "prose",
+    "css",
+    "v4"
+  ],
+  "author": "Khalil LAGRIDA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kgridou/tailwind-typography/issues"
+  },
+  "homepage": "https://github.com/kgridou/tailwind-typography#readme",
+  "scripts": {
+    "build": "cp src/typography.css dist/typography.css",
+    "prepublishOnly": "npm run build"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "@tailwind-typography/workspace",
+  "version": "1.0.0",
+  "description": "Workspace for Tailwind Typography packages and apps",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kgridou/tailwind-typography.git"
+  },
+  "keywords": [
+    "tailwindcss",
+    "typography",
+    "prose",
+    "css",
+    "v4"
+  ],
+  "author": "Khalil LAGRIDA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kgridou/tailwind-typography/issues"
+  },
+  "homepage": "https://github.com/kgridou/tailwind-typography#readme",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6",
+    "prettier": "3.6.2",
+    "vite": "^5.0.0",
+    "@tailwindcss/vite": "^4.0.0-alpha.15",
+    "tailwindcss": "^4.0.0-alpha.15"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "dev": "npm run dev --workspace=apps/demo",
+    "build": "npm run build --workspaces --if-present",
+    "format": "prettier --write ."
+  }
+}
