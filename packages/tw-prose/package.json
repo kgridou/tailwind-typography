@@ -1,6 +1,6 @@
 {
   "name": "tw-prose",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "CSS-only version of Tailwind Typography plugin (v4) with all prose variants",
   "main": "index.css",
   "files": [
