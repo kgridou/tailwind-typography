@@ -17,7 +17,7 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 
 ### Package Management
 
-- `npm run build --workspace=packages/tailwind-typography` - Build only the core library
+- `npm run build --workspace=packages/tw-prose` - Build only the core library
 - `npm run dev --workspace=apps/demo` - Start only the demo app
 
 ### Code Formatting
@@ -29,15 +29,15 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 
 ### Workspace Layout
 
-- `packages/tailwind-typography/` - Core CSS library package (`@tailwind-typography/core`)
+- `packages/tw-prose/` - Core CSS library package (`tw-prose`)
 - `apps/demo/` - Demo application showcasing all typography variants
 - `package.json` - Workspace root configuration
 - `.husky/` - Git hooks for code formatting
 
 ### Key Files
 
-- `packages/tailwind-typography/src/index.css` - Source CSS file with all prose styling variants
-- `packages/tailwind-typography/dist/index.css` - Built/published CSS file
+- `packages/tw-prose/src/index.css` - Source CSS file with all prose styling variants
+- `packages/tw-prose/dist/index.css` - Built/published CSS file
 - `apps/demo/index.html` - Demo page showcasing all typography sizes
 - `apps/demo/src/main.css` - Demo app styles that import the core library
 
@@ -77,7 +77,7 @@ The `index.css` file is organized as follows:
 ### Development Notes
 
 - Monorepo structure using npm workspaces
-- Core library in `packages/tailwind-typography` with simple build step (copy src to dist)
+- Core library in `packages/tw-prose` with simple build step (copy src to dist)
 - Demo app uses Vite with Tailwind CSS v4 integration via `@tailwindcss/vite` plugin
 - The project uses Husky for git hooks with lint-staged for automatic formatting
 - Prettier configuration is minimal (empty object in `.prettierrc`)

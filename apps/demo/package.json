@@ -1,5 +1,5 @@
 {
-  "name": "@tailwind-typography/demo",
+  "name": "@tw-prose/demo",
   "version": "1.0.0",
   "description": "Demo application for Tailwind Typography",
   "private": true,
@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "tailwind-typography": "file:../../packages/tailwind-typography"
+    "tw-prose": "file:../../packages/tw-prose"
   },
   "devDependencies": {
     "vite": "^7.1.5",
