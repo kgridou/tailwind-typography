@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwind-typography/core": "workspace:*"
+    "tailwind-typography": "file:../../packages/tailwind-typography"
   },
   "devDependencies": {
-    "vite": "^5.0.0",
-    "@tailwindcss/vite": "^4.0.0-alpha.15",
-    "tailwindcss": "^4.0.0-alpha.15"
+    "vite": "^7.1.5",
+    "@tailwindcss/vite": "^4.1.13",
+    "tailwindcss": "^4.1.13"
   }
 }

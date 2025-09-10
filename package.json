@@ -30,10 +30,10 @@
   "devDependencies": {
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",
-    "prettier": "3.6.2",
-    "vite": "^5.0.0",
-    "@tailwindcss/vite": "^4.0.0-alpha.15",
-    "tailwindcss": "^4.0.0-alpha.15"
+    "prettier": "^3.6.2",
+    "vite": "^7.1.5",
+    "@tailwindcss/vite": "^4.1.13",
+    "tailwindcss": "^4.1.13"
   },
   "scripts": {
     "prepare": "husky",
