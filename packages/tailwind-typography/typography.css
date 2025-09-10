@@ -165,7 +165,7 @@
   quotes: "\201C" "\201D" "\2018" "\2019";
   margin-top: 1.6em;
   margin-bottom: 1.6em;
-  padding-inline-start: 1em;
+  padding-inline-start: calc(var(--spacing) * 4);
 }
 
 .prose
@@ -343,7 +343,7 @@
   line-height: var(--text-sm--line-height);
   margin-top: 1.7142857em;
   margin-bottom: 1.7142857em;
-  border-radius: 0.375rem;
+  border-radius: var(--radius-md);
   padding-top: 0.8571429em;
   padding-inline-end: 1.1428571em;
   padding-bottom: 0.8571429em;
@@ -757,9 +757,9 @@
   margin-bottom: 1.6666667em;
   border-radius: 0.25rem;
   padding-top: 0.6666667em;
-  padding-inline-end: 1em;
+  padding-inline-end: calc(var(--spacing) * 4);
   padding-bottom: 0.6666667em;
-  padding-inline-start: 1em;
+  padding-inline-start: calc(var(--spacing) * 4);
 }
 
 .prose-sm :where(ol):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -880,9 +880,9 @@
 
 .prose-sm
   :where(thead th):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  padding-inline-end: 1em;
+  padding-inline-end: calc(var(--spacing) * 4);
   padding-bottom: 0.6666667em;
-  padding-inline-start: 1em;
+  padding-inline-start: calc(var(--spacing) * 4);
 }
 
 .prose-sm
@@ -904,9 +904,9 @@
     :where([class~="not-prose"], [class~="not-prose"] *)
   ) {
   padding-top: 0.6666667em;
-  padding-inline-end: 1em;
+  padding-inline-end: calc(var(--spacing) * 4);
   padding-bottom: 0.6666667em;
-  padding-inline-start: 1em;
+  padding-inline-start: calc(var(--spacing) * 4);
 }
 
 .prose-sm
@@ -980,7 +980,7 @@
   :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   margin-top: 1.6666667em;
   margin-bottom: 1.6666667em;
-  padding-inline-start: 1em;
+  padding-inline-start: calc(var(--spacing) * 4);
 }
 
 .prose-lg :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -1067,11 +1067,11 @@
   line-height: 1.75;
   margin-top: calc(var(--spacing) * 8);
   margin-bottom: calc(var(--spacing) * 8);
-  border-radius: 0.375rem;
+  border-radius: var(--radius-md);
   padding-top: calc(var(--spacing) * 4);
-  padding-inline-end: 1.5em;
+  padding-inline-end: calc(var(--spacing) * 6);
   padding-bottom: calc(var(--spacing) * 4);
-  padding-inline-start: 1.5em;
+  padding-inline-start: calc(var(--spacing) * 6);
 }
 
 .prose-lg :where(ol):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -1667,7 +1667,7 @@
 .prose-2xl
   :where(kbd):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   font-size: 0.8333333em;
-  border-radius: 0.375rem;
+  border-radius: var(--radius-md);
   padding-top: calc(var(--spacing) * 1);
   padding-inline-end: 0.3333333em;
   padding-bottom: calc(var(--spacing) * 1);
