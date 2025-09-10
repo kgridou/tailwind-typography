@@ -22,13 +22,13 @@
 .prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-links);
   text-decoration: underline;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .prose
   :where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-bold);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 .prose
@@ -131,7 +131,7 @@
   :where(ol > li):not(
     :where([class~="not-prose"], [class~="not-prose"] *)
   )::marker {
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
   color: var(--tw-prose-counters);
 }
 
@@ -144,7 +144,7 @@
 
 .prose :where(dt):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   margin-top: 1.25em;
 }
 
@@ -157,7 +157,7 @@
 
 .prose
   :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-style: italic;
   color: var(--tw-prose-quotes);
   border-inline-start-width: 0.25rem;
@@ -184,7 +184,7 @@
 
 .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
-  font-weight: 800;
+  font-weight: var(--font-weight-extrabold);
   font-size: 2.25em;
   margin-top: 0;
   margin-bottom: 0.8888889em;
@@ -193,13 +193,13 @@
 
 .prose
   :where(h1 strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  font-weight: 900;
+  font-weight: var(--font-weight-black);
   color: inherit;
 }
 
 .prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 1.5em;
   margin-top: 2em;
   margin-bottom: 1em;
@@ -208,13 +208,13 @@
 
 .prose
   :where(h2 strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  font-weight: 800;
+  font-weight: var(--font-weight-extrabold);
   color: inherit;
 }
 
 .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-size: 1.25em;
   margin-top: 1.6em;
   margin-bottom: 0.6em;
@@ -223,13 +223,13 @@
 
 .prose
   :where(h3 strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   color: inherit;
 }
 
 .prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   margin-top: 1.5em;
   margin-bottom: 0.5em;
   line-height: 1.5;
@@ -237,7 +237,7 @@
 
 .prose
   :where(h4 strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   color: inherit;
 }
 
@@ -259,7 +259,7 @@
 }
 
 .prose :where(kbd):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-family: inherit;
   color: var(--tw-prose-kbd);
   box-shadow:
@@ -275,7 +275,7 @@
 
 .prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-code);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-size: 0.875em;
 }
 
@@ -338,7 +338,7 @@
   color: var(--tw-prose-pre-code);
   background-color: var(--tw-prose-pre-bg);
   overflow-x: auto;
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
   font-size: 0.875em;
   line-height: 1.7142857;
   margin-top: 1.7142857em;
@@ -394,7 +394,7 @@
 .prose
   :where(thead th):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   vertical-align: bottom;
   padding-inline-end: 0.5714286em;
   padding-bottom: 0.5714286em;
