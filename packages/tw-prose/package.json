@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/kgridou/tailwind-typography#readme",
   "scripts": {
-    "build": "mkdir -p dist && cp index.css dist/index.css",
+    "build": "node -e \"const fs = require('fs'); fs.mkdirSync('dist', {recursive: true}); fs.copyFileSync('index.css', 'dist/index.css');\"",
     "prepublishOnly": "npm run build"
   }
 }
