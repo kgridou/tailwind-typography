@@ -161,8 +161,17 @@ npm install
 npm run dev
 
 # Build package
-npm run build --workspace=packages/tailwind-typography
+npm run build --workspace=packages/tw-prose
 ```
+
+### Publishing
+
+The package is automatically published to npm via GitHub Actions when a new tag is created:
+
+1. Update the version in `package.json`
+2. Create and push a git tag: `git tag v0.0.2 && git push origin v0.0.2`
+
+The GitHub Actions workflow will automatically build and publish the package to npm.
 
 ## License
 
