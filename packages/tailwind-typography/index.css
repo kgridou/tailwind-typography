@@ -1238,7 +1238,7 @@
   }
 
   & :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    font-size: calc(var(--spacing) * 10);
+    font-size: var(--text-5xl);
     margin-top: 0;
     margin-bottom: calc(var(--spacing) * 4);
     line-height: 1;
