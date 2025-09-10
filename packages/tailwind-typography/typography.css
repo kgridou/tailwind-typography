@@ -1,13 +1,25 @@
+/* ===================================================================
+   TAILWIND TYPOGRAPHY - CSS-only version for Tailwind CSS v4
+   Using Tailwind v4 CSS variables for consistency and maintainability
+   =================================================================== */
+
+/* Base prose container */
 .prose {
   color: var(--tw-prose-body);
   max-width: 65ch;
 }
 
+/* ===================================================================
+   BASIC TEXT ELEMENTS
+   =================================================================== */
+
+/* Paragraphs */
 .prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   margin-top: calc(var(--spacing) * 5);
   margin-bottom: calc(var(--spacing) * 5);
 }
 
+/* Lead text */
 .prose
   :where([class~="lead"]):not(
     :where([class~="not-prose"], [class~="not-prose"] *)
@@ -19,12 +31,18 @@
   margin-bottom: calc(var(--spacing) * 4.8);
 }
 
+/* ===================================================================
+   LINKS AND TEXT FORMATTING  
+   =================================================================== */
+
+/* Links */
 .prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-links);
   text-decoration: underline;
   font-weight: var(--font-weight-medium);
 }
 
+/* Strong/Bold text */
 .prose
   :where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-bold);
@@ -50,6 +68,11 @@
   color: inherit;
 }
 
+/* ===================================================================
+   LISTS
+   =================================================================== */
+
+/* Ordered lists */
 .prose :where(ol):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   list-style-type: decimal;
   margin-top: calc(var(--spacing) * 5);
@@ -155,6 +178,10 @@
   margin-bottom: calc(var(--spacing) * 12);
 }
 
+/* ===================================================================
+   BLOCKQUOTES
+   =================================================================== */
+
 .prose
   :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   font-weight: var(--font-weight-medium);
@@ -182,6 +209,11 @@
   content: close-quote;
 }
 
+/* ===================================================================
+   HEADINGS
+   =================================================================== */
+
+/* Heading 1 */
 .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
   font-weight: var(--font-weight-extrabold);
@@ -197,6 +229,7 @@
   color: inherit;
 }
 
+/* Heading 2 */
 .prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
   font-weight: var(--font-weight-bold);
@@ -212,6 +245,7 @@
   color: inherit;
 }
 
+/* Heading 3 */
 .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
   font-weight: var(--font-weight-semibold);
@@ -227,6 +261,7 @@
   color: inherit;
 }
 
+/* Heading 4 */
 .prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--tw-prose-headings);
   font-weight: var(--font-weight-semibold);
