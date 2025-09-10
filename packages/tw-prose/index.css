@@ -849,6 +849,7 @@
   }
 }
 
+/* Invert (for dark mode) */
 @utility prose-invert {
   --tw-prose-body: var(--tw-prose-invert-body);
   --tw-prose-headings: var(--tw-prose-invert-headings);
