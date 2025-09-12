@@ -9,6 +9,11 @@ const variants = [
   { name: '2xl', buttonText: '2XL' },
 ];
 
+// Tolerance for pixel differences (0 = exact match required)
+// Set PLAYWRIGHT_PIXEL_TOLERANCE environment variable to allow minor differences
+// Example: PLAYWRIGHT_PIXEL_TOLERANCE=2 npm run test:playwright
+const PIXEL_DIFFERENCE_TOLERANCE = parseInt(process.env.PLAYWRIGHT_PIXEL_TOLERANCE || '0');
+
 const elementsToTest = [
   { selector: 'h1', name: 'Main Heading' },
   { selector: 'h2', name: 'Secondary Heading' },
@@ -144,16 +149,18 @@ test.describe('Typography Libraries Comparison', () => {
               `${prop}: tw-prose="${twValue}" vs @tailwindcss/typography="${tailwindValue}"`,
             );
 
-            // Consider significant differences (ignoring minor pixel differences)
+            // Consider significant differences based on configurable tolerance
             if (prop === 'fontSize' || prop === 'lineHeight') {
               const twNum = parseFloat(twValue);
               const tailwindNum = parseFloat(tailwindValue);
-              if (Math.abs(twNum - tailwindNum) > 2) {
-                // More than 2px difference is significant
+              if (Math.abs(twNum - tailwindNum) > PIXEL_DIFFERENCE_TOLERANCE) {
                 hasSignificantDifferences = true;
               }
             } else {
-              hasSignificantDifferences = true;
+              // For non-pixel properties, any difference is significant when tolerance is 0
+              if (PIXEL_DIFFERENCE_TOLERANCE === 0) {
+                hasSignificantDifferences = true;
+              }
             }
           }
         }
