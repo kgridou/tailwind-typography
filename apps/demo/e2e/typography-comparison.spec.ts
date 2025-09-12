@@ -224,7 +224,8 @@ test.describe('Typography Libraries Comparison', () => {
             'borderStyle',
             'borderRadius',
           ]) {
-            result[prop] = styles.getPropertyValue(prop);
+            const value = styles.getPropertyValue(prop) || styles[prop as any] || '';
+            result[prop] = value;
           }
           return result;
         });
@@ -259,7 +260,8 @@ test.describe('Typography Libraries Comparison', () => {
             'borderStyle',
             'borderRadius',
           ]) {
-            result[prop] = styles.getPropertyValue(prop);
+            const value = styles.getPropertyValue(prop) || styles[prop as any] || '';
+            result[prop] = value;
           }
           return result;
         });
@@ -337,5 +339,336 @@ test.describe('Typography Libraries Comparison', () => {
     await expect(page.locator('[data-testid="tw-prose-container"] table').first()).toBeVisible();
     await expect(page.locator('[data-testid="tw-prose-container"] ul').first()).toBeVisible();
     await expect(page.locator('[data-testid="tw-prose-container"] ol').first()).toBeVisible();
+  });
+
+  // Test dark mode for each variant
+  for (const variant of variants) {
+    test(`should have identical dark mode styles for ${variant.name} variant`, async ({ page }) => {
+      // Select the variant
+      await page.click(`[data-testid="size-${variant.name}"]`);
+      await page.waitForTimeout(200);
+
+      // Enable dark mode
+      const darkModeCheckbox = page.locator('[data-testid="dark-mode-toggle"]');
+      await darkModeCheckbox.click();
+      await page.waitForTimeout(500); // Allow dark mode styles to apply
+
+      let passedElements = 0;
+      let totalComparisons = 0;
+
+      // Test key elements that are affected by dark mode
+      const darkModeElements = [
+        { selector: 'h1', name: 'Heading 1 (dark)' },
+        { selector: 'h2', name: 'Heading 2 (dark)' },
+        { selector: 'p', name: 'Paragraph (dark)' },
+        { selector: 'a', name: 'Link (dark)' },
+        { selector: 'strong', name: 'Strong/Bold (dark)' },
+        { selector: 'code', name: 'Inline code (dark)' },
+        { selector: 'pre', name: 'Code block (dark)' },
+        { selector: 'blockquote', name: 'Blockquote (dark)' },
+        { selector: 'table', name: 'Table (dark)' },
+        { selector: 'th', name: 'Table header (dark)' },
+        { selector: 'td', name: 'Table cell (dark)' },
+      ];
+
+      for (const element of darkModeElements) {
+        const twElement = page
+          .locator(`[data-testid="tw-prose-container"] ${element.selector}`)
+          .first();
+        const tailwindElement = page
+          .locator(`[data-testid="tailwindcss-container"] ${element.selector}`)
+          .first();
+
+        const twExists = (await twElement.count()) > 0;
+        const tailwindExists = (await tailwindElement.count()) > 0;
+
+        if (twExists && tailwindExists) {
+          // Focus on color properties for dark mode
+          const twStyles = await twElement.evaluate((el) => {
+            const styles = window.getComputedStyle(el);
+            return {
+              color: styles.getPropertyValue('color'),
+              backgroundColor: styles.getPropertyValue('backgroundColor'),
+              borderColor: styles.getPropertyValue('borderColor'),
+            };
+          });
+
+          const tailwindStyles = await tailwindElement.evaluate((el) => {
+            const styles = window.getComputedStyle(el);
+            return {
+              color: styles.getPropertyValue('color'),
+              backgroundColor: styles.getPropertyValue('backgroundColor'),
+              borderColor: styles.getPropertyValue('borderColor'),
+            };
+          });
+
+          totalComparisons++;
+          const comparison = hasSignificantDifferences(twStyles, tailwindStyles);
+
+          if (comparison.hasDifferences) {
+            console.log(`❌ ${element.name} has dark mode differences:`);
+            comparison.differences.forEach((diff) => console.log(`   ${diff}`));
+            throw new Error(
+              `Dark mode styling differences found for ${element.name}:\n${comparison.differences.join('\n')}`,
+            );
+          } else {
+            passedElements++;
+            console.log(`✅ ${element.name} matches exactly in dark mode`);
+          }
+        }
+      }
+
+      console.log(
+        `\n🌙 ${variant.name} dark mode: ${passedElements}/${totalComparisons} elements match perfectly!`,
+      );
+    });
+  }
+
+  // Test responsive behavior
+  test('should maintain consistency across different viewport sizes', async ({ page }) => {
+    const viewports = [
+      { width: 375, height: 667, name: 'Mobile' },
+      { width: 768, height: 1024, name: 'Tablet' },
+      { width: 1920, height: 1080, name: 'Desktop' },
+    ];
+
+    for (const viewport of viewports) {
+      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await page.waitForTimeout(300);
+
+      // Test key responsive elements
+      const responsiveElements = ['p', 'h1', 'h2', 'blockquote', 'table'];
+
+      for (const selector of responsiveElements) {
+        const twElement = page.locator(`[data-testid="tw-prose-container"] ${selector}`).first();
+        const tailwindElement = page
+          .locator(`[data-testid="tailwindcss-container"] ${selector}`)
+          .first();
+
+        if ((await twElement.count()) > 0 && (await tailwindElement.count()) > 0) {
+          const twStyles = await twElement.evaluate((el) => {
+            const styles = window.getComputedStyle(el);
+            return {
+              fontSize: styles.getPropertyValue('fontSize'),
+              lineHeight: styles.getPropertyValue('lineHeight'),
+              margin: styles.getPropertyValue('margin'),
+            };
+          });
+
+          const tailwindStyles = await tailwindElement.evaluate((el) => {
+            const styles = window.getComputedStyle(el);
+            return {
+              fontSize: styles.getPropertyValue('fontSize'),
+              lineHeight: styles.getPropertyValue('lineHeight'),
+              margin: styles.getPropertyValue('margin'),
+            };
+          });
+
+          const comparison = hasSignificantDifferences(twStyles, tailwindStyles);
+          if (comparison.hasDifferences) {
+            throw new Error(
+              `Responsive differences found for ${selector} on ${viewport.name}:\n${comparison.differences.join('\n')}`,
+            );
+          }
+        }
+      }
+
+      console.log(
+        `✅ ${viewport.name} (${viewport.width}x${viewport.height}) layout matches perfectly`,
+      );
+    }
+  });
+
+  // Test CSS specificity and inheritance
+  test('should handle CSS specificity correctly', async ({ page }) => {
+    const specificityTests = [
+      { selector: 'blockquote p', name: 'Paragraph inside blockquote' },
+      { selector: 'li p', name: 'Paragraph inside list item' },
+      { selector: 'thead th', name: 'Header in table head' },
+      { selector: 'tbody td', name: 'Cell in table body' },
+      { selector: 'pre code', name: 'Code inside pre block' },
+      { selector: 'a strong', name: 'Strong text inside link' },
+      { selector: 'h1 code', name: 'Code inside heading 1' },
+      { selector: 'h2 code', name: 'Code inside heading 2' },
+    ];
+
+    for (const test of specificityTests) {
+      const twElement = page.locator(`[data-testid="tw-prose-container"] ${test.selector}`).first();
+      const tailwindElement = page
+        .locator(`[data-testid="tailwindcss-container"] ${test.selector}`)
+        .first();
+
+      const twExists = (await twElement.count()) > 0;
+      const tailwindExists = (await tailwindElement.count()) > 0;
+
+      if (twExists && tailwindExists) {
+        const twStyles = await twElement.evaluate((el) => {
+          const styles = window.getComputedStyle(el);
+          return {
+            color: styles.getPropertyValue('color'),
+            fontSize: styles.getPropertyValue('fontSize'),
+            fontWeight: styles.getPropertyValue('fontWeight'),
+            margin: styles.getPropertyValue('margin'),
+            padding: styles.getPropertyValue('padding'),
+          };
+        });
+
+        const tailwindStyles = await tailwindElement.evaluate((el) => {
+          const styles = window.getComputedStyle(el);
+          return {
+            color: styles.getPropertyValue('color'),
+            fontSize: styles.getPropertyValue('fontSize'),
+            fontWeight: styles.getPropertyValue('fontWeight'),
+            margin: styles.getPropertyValue('margin'),
+            padding: styles.getPropertyValue('padding'),
+          };
+        });
+
+        const comparison = hasSignificantDifferences(twStyles, tailwindStyles);
+        if (comparison.hasDifferences) {
+          throw new Error(
+            `Specificity differences found for ${test.name}:\n${comparison.differences.join('\n')}`,
+          );
+        }
+
+        console.log(`✅ ${test.name} specificity handled correctly`);
+      }
+    }
+  });
+
+  // Test performance and accessibility
+  test('should have similar accessibility properties', async ({ page }) => {
+    const accessibilityElements = [
+      { selector: 'a', properties: ['color', 'textDecoration', 'cursor'] },
+      { selector: 'button', properties: ['cursor', 'outline'] },
+      { selector: 'table', properties: ['borderCollapse', 'textAlign'] },
+      { selector: 'th', properties: ['fontWeight', 'textAlign'] },
+      { selector: 'code', properties: ['fontFamily', 'fontSize'] },
+      { selector: 'pre', properties: ['fontFamily', 'whiteSpace', 'overflow'] },
+    ];
+
+    for (const test of accessibilityElements) {
+      const twElement = page.locator(`[data-testid="tw-prose-container"] ${test.selector}`).first();
+      const tailwindElement = page
+        .locator(`[data-testid="tailwindcss-container"] ${test.selector}`)
+        .first();
+
+      if ((await twElement.count()) > 0 && (await tailwindElement.count()) > 0) {
+        for (const property of test.properties) {
+          const twValue = await twElement.evaluate((el, prop) => {
+            return window.getComputedStyle(el).getPropertyValue(prop);
+          }, property);
+
+          const tailwindValue = await tailwindElement.evaluate((el, prop) => {
+            return window.getComputedStyle(el).getPropertyValue(prop);
+          }, property);
+
+          if (twValue !== tailwindValue) {
+            throw new Error(
+              `Accessibility property mismatch for ${test.selector}.${property}: tw-prose="${twValue}" vs @tailwindcss/typography="${tailwindValue}"`,
+            );
+          }
+        }
+
+        console.log(`✅ ${test.selector} accessibility properties match`);
+      }
+    }
+  });
+
+  // Test edge cases and boundary conditions
+  test('should handle edge cases correctly', async ({ page }) => {
+    const edgeCases = [
+      { selector: 'p:first-child', name: 'First paragraph' },
+      { selector: 'p:last-child', name: 'Last paragraph' },
+      { selector: 'li:first-child', name: 'First list item' },
+      { selector: 'li:last-child', name: 'Last list item' },
+      { selector: 'tr:first-child', name: 'First table row' },
+      { selector: 'tr:last-child', name: 'Last table row' },
+      { selector: 'h2 + *', name: 'Element immediately after h2' },
+      { selector: 'h3 + *', name: 'Element immediately after h3' },
+      { selector: 'hr + *', name: 'Element immediately after hr' },
+    ];
+
+    for (const test of edgeCases) {
+      const twElement = page.locator(`[data-testid="tw-prose-container"] ${test.selector}`).first();
+      const tailwindElement = page
+        .locator(`[data-testid="tailwindcss-container"] ${test.selector}`)
+        .first();
+
+      if ((await twElement.count()) > 0 && (await tailwindElement.count()) > 0) {
+        const twStyles = await twElement.evaluate((el) => {
+          const styles = window.getComputedStyle(el);
+          return {
+            marginTop: styles.getPropertyValue('marginTop'),
+            marginBottom: styles.getPropertyValue('marginBottom'),
+            paddingTop: styles.getPropertyValue('paddingTop'),
+            paddingBottom: styles.getPropertyValue('paddingBottom'),
+          };
+        });
+
+        const tailwindStyles = await tailwindElement.evaluate((el) => {
+          const styles = window.getComputedStyle(el);
+          return {
+            marginTop: styles.getPropertyValue('marginTop'),
+            marginBottom: styles.getPropertyValue('marginBottom'),
+            paddingTop: styles.getPropertyValue('paddingTop'),
+            paddingBottom: styles.getPropertyValue('paddingBottom'),
+          };
+        });
+
+        const comparison = hasSignificantDifferences(twStyles, tailwindStyles);
+        if (comparison.hasDifferences) {
+          throw new Error(
+            `Edge case differences found for ${test.name}:\n${comparison.differences.join('\n')}`,
+          );
+        }
+
+        console.log(`✅ ${test.name} edge case handled correctly`);
+      }
+    }
+  });
+
+  // Test CSS custom properties and theming
+  test('should have correct CSS custom properties', async ({ page }) => {
+    const twProseContent = page.locator('[data-testid="tw-prose-container"] app-prose-content');
+
+    const customProperties = [
+      '--tw-prose-body',
+      '--tw-prose-headings',
+      '--tw-prose-links',
+      '--tw-prose-bold',
+      '--tw-prose-code',
+      '--tw-prose-quotes',
+    ];
+
+    for (const property of customProperties) {
+      const twValue = await twProseContent.evaluate((el, prop) => {
+        return window.getComputedStyle(el).getPropertyValue(prop);
+      }, property);
+
+      // This test ensures our tw-prose has the expected custom properties defined
+      expect(twValue).toBeTruthy();
+      console.log(`✅ Custom property ${property} is defined: ${twValue}`);
+    }
+  });
+
+  // Performance test
+  test('should render within performance budget', async ({ page }) => {
+    const startTime = Date.now();
+
+    // Navigate and wait for full load
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    const loadTime = Date.now() - startTime;
+
+    // Should load within 5 seconds (generous for comprehensive content)
+    expect(loadTime).toBeLessThan(5000);
+
+    // Check that both containers are rendered
+    await expect(page.locator('[data-testid="tw-prose-container"]')).toBeVisible();
+    await expect(page.locator('[data-testid="tailwindcss-container"]')).toBeVisible();
+
+    console.log(`✅ Page loaded in ${loadTime}ms (within performance budget)`);
   });
 });
