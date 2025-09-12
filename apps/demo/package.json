@@ -7,6 +7,9 @@
     "build": "npm run update-version && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:playwright": "playwright test",
+    "test:playwright-ui": "playwright test --ui",
+    "test:playwright-headed": "playwright test --headed",
     "update-version": "node scripts/update-version.js"
   },
   "private": true,
@@ -35,6 +38,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "@playwright/test": "^1.48.2"
   }
 }
