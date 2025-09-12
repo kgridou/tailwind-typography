@@ -241,18 +241,18 @@ test.describe('Typography Libraries Comparison', () => {
     ];
 
     for (const container of containers) {
-      // Check for presence of key elements
-      await expect(container.locator('h1')).toBeVisible();
-      await expect(container.locator('h2')).toBeVisible();
-      await expect(container.locator('p')).toBeVisible();
-      await expect(container.locator('a')).toBeVisible();
-      await expect(container.locator('strong')).toBeVisible();
-      await expect(container.locator('em')).toBeVisible();
-      await expect(container.locator('code')).toBeVisible();
-      await expect(container.locator('ul')).toBeVisible();
-      await expect(container.locator('ol')).toBeVisible();
-      await expect(container.locator('li')).toBeVisible();
-      await expect(container.locator('blockquote')).toBeVisible();
+      // Check for presence of key elements - use first() to avoid strict mode violations
+      await expect(container.locator('h1').first()).toBeVisible();
+      await expect(container.locator('h2').first()).toBeVisible();
+      await expect(container.locator('p').first()).toBeVisible();
+      await expect(container.locator('a').first()).toBeVisible();
+      await expect(container.locator('strong').first()).toBeVisible();
+      await expect(container.locator('em').first()).toBeVisible();
+      await expect(container.locator('code').first()).toBeVisible();
+      await expect(container.locator('ul').first()).toBeVisible();
+      await expect(container.locator('ol').first()).toBeVisible();
+      await expect(container.locator('li').first()).toBeVisible();
+      await expect(container.locator('blockquote').first()).toBeVisible();
     }
   });
 });
