@@ -24,11 +24,41 @@ export interface ProseSettings {
             Size Variant
           </label>
           <div class="flex flex-wrap gap-2">
-            <button (click)="updateSize('base')" [class]="getSizeButtonClass('base')">Base</button>
-            <button (click)="updateSize('sm')" [class]="getSizeButtonClass('sm')">Small</button>
-            <button (click)="updateSize('lg')" [class]="getSizeButtonClass('lg')">Large</button>
-            <button (click)="updateSize('xl')" [class]="getSizeButtonClass('xl')">XL</button>
-            <button (click)="updateSize('2xl')" [class]="getSizeButtonClass('2xl')">2XL</button>
+            <button
+              data-testid="size-base"
+              (click)="updateSize('base')"
+              [class]="getSizeButtonClass('base')"
+            >
+              Base
+            </button>
+            <button
+              data-testid="size-sm"
+              (click)="updateSize('sm')"
+              [class]="getSizeButtonClass('sm')"
+            >
+              Small
+            </button>
+            <button
+              data-testid="size-lg"
+              (click)="updateSize('lg')"
+              [class]="getSizeButtonClass('lg')"
+            >
+              Large
+            </button>
+            <button
+              data-testid="size-xl"
+              (click)="updateSize('xl')"
+              [class]="getSizeButtonClass('xl')"
+            >
+              XL
+            </button>
+            <button
+              data-testid="size-2xl"
+              (click)="updateSize('2xl')"
+              [class]="getSizeButtonClass('2xl')"
+            >
+              2XL
+            </button>
           </div>
         </div>
 
@@ -36,6 +66,7 @@ export interface ProseSettings {
         <div>
           <label class="flex items-center cursor-pointer w-fit">
             <input
+              data-testid="dark-mode-toggle"
               type="checkbox"
               [checked]="settings().darkMode"
               (change)="toggleDarkMode()"
