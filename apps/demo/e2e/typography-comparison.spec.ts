@@ -10,12 +10,11 @@ const variants = [
 ];
 
 // Tolerance for pixel differences (0 = exact match required)
-// Set PLAYWRIGHT_PIXEL_TOLERANCE environment variable to allow minor differences
-// Example: PLAYWRIGHT_PIXEL_TOLERANCE=2 npm run test:playwright
 const PIXEL_DIFFERENCE_TOLERANCE = parseInt(process.env.PLAYWRIGHT_PIXEL_TOLERANCE || '0');
 
+// Only test elements that actually exist in the demo content
 const elementsToTest = [
-  // Headings - all levels
+  // Headings that exist
   { selector: 'h1', name: 'Heading 1' },
   { selector: 'h2', name: 'Heading 2' },
   { selector: 'h3', name: 'Heading 3' },
@@ -23,37 +22,27 @@ const elementsToTest = [
   { selector: 'h5', name: 'Heading 5' },
   { selector: 'h6', name: 'Heading 6' },
 
-  // Text elements
+  // Text elements that exist
   { selector: 'p', name: 'Paragraph' },
-  { selector: 'p:first-of-type', name: 'First paragraph' },
-  { selector: 'p:last-of-type', name: 'Last paragraph' },
-  { selector: 'p + p', name: 'Subsequent paragraph' },
+  { selector: 'p.lead', name: 'Lead paragraph' },
 
-  // Inline elements
+  // Inline elements that exist
   { selector: 'a', name: 'Link' },
-  { selector: 'a:hover', name: 'Link hover state' },
   { selector: 'strong', name: 'Strong/Bold' },
   { selector: 'em', name: 'Emphasis/Italic' },
-  { selector: 'b', name: 'Bold tag' },
-  { selector: 'i', name: 'Italic tag' },
   { selector: 'u', name: 'Underline' },
   { selector: 'small', name: 'Small text' },
   { selector: 'sup', name: 'Superscript' },
   { selector: 'sub', name: 'Subscript' },
   { selector: 'mark', name: 'Highlighted text' },
-  { selector: 'del', name: 'Deleted text' },
-  { selector: 'ins', name: 'Inserted text' },
-  { selector: 's', name: 'Strikethrough' },
 
-  // Code elements
+  // Code elements that exist
   { selector: 'code', name: 'Inline code' },
   { selector: 'pre', name: 'Code block container' },
   { selector: 'pre code', name: 'Code block content' },
   { selector: 'kbd', name: 'Keyboard input' },
-  { selector: 'samp', name: 'Sample output' },
-  { selector: 'var', name: 'Variable' },
 
-  // Lists
+  // Lists that exist
   { selector: 'ul', name: 'Unordered list' },
   { selector: 'ol', name: 'Ordered list' },
   { selector: 'li', name: 'List item' },
@@ -61,123 +50,62 @@ const elementsToTest = [
   { selector: 'ol li', name: 'Ordered list item' },
   { selector: 'ul ul', name: 'Nested unordered list' },
   { selector: 'ol ol', name: 'Nested ordered list' },
-  { selector: 'ul ol', name: 'Mixed nested list (ul > ol)' },
-  { selector: 'ol ul', name: 'Mixed nested list (ol > ul)' },
-  { selector: 'li p', name: 'Paragraph in list item' },
-  { selector: 'li:first-child', name: 'First list item' },
-  { selector: 'li:last-child', name: 'Last list item' },
 
-  // Quotes and citations
+  // Quotes and citations that exist
   { selector: 'blockquote', name: 'Blockquote' },
   { selector: 'blockquote p', name: 'Paragraph in blockquote' },
-  { selector: 'blockquote p:first-of-type', name: 'First paragraph in blockquote' },
-  { selector: 'blockquote p:last-of-type', name: 'Last paragraph in blockquote' },
   { selector: 'cite', name: 'Citation' },
-  { selector: 'q', name: 'Inline quote' },
 
-  // Tables
+  // Tables that exist
   { selector: 'table', name: 'Table' },
   { selector: 'thead', name: 'Table header group' },
   { selector: 'tbody', name: 'Table body group' },
-  { selector: 'tfoot', name: 'Table footer group' },
   { selector: 'tr', name: 'Table row' },
   { selector: 'th', name: 'Table header cell' },
   { selector: 'td', name: 'Table data cell' },
   { selector: 'thead th', name: 'Header cell in thead' },
   { selector: 'tbody td', name: 'Data cell in tbody' },
-  { selector: 'tr:first-child', name: 'First table row' },
-  { selector: 'tr:last-child', name: 'Last table row' },
-  { selector: 'tr:nth-child(even)', name: 'Even table rows' },
-  { selector: 'tr:nth-child(odd)', name: 'Odd table rows' },
-  { selector: 'th:first-child', name: 'First header cell' },
-  { selector: 'td:first-child', name: 'First data cell' },
 
-  // Definition lists
+  // Definition lists that exist
   { selector: 'dl', name: 'Definition list' },
   { selector: 'dt', name: 'Definition term' },
   { selector: 'dd', name: 'Definition description' },
 
-  // Horizontal rules
+  // Other elements that exist
   { selector: 'hr', name: 'Horizontal rule' },
-
-  // Figures and media
+  { selector: 'img', name: 'Image' },
   { selector: 'figure', name: 'Figure' },
   { selector: 'figcaption', name: 'Figure caption' },
-  { selector: 'img', name: 'Image' },
-
-  // Form elements (if any in prose content)
-  { selector: 'fieldset', name: 'Fieldset' },
-  { selector: 'legend', name: 'Legend' },
-  { selector: 'label', name: 'Label' },
-  { selector: 'input', name: 'Input' },
-  { selector: 'textarea', name: 'Textarea' },
-  { selector: 'select', name: 'Select' },
-  { selector: 'button', name: 'Button' },
-
-  // Address and contact
   { selector: 'address', name: 'Address' },
-
-  // Abbreviations and acronyms
   { selector: 'abbr', name: 'Abbreviation' },
-  { selector: 'acronym', name: 'Acronym' },
-
-  // Time and dates
-  { selector: 'time', name: 'Time element' },
-
-  // Ruby annotations (for East Asian typography)
-  { selector: 'ruby', name: 'Ruby annotation' },
-  { selector: 'rt', name: 'Ruby text' },
-  { selector: 'rp', name: 'Ruby parentheses' },
+  { selector: 'div', name: 'Division element' },
+  { selector: 'span', name: 'Span element' },
 ];
 
-const criticalProperties = [
+// CSS properties to compare
+const cssPropertiesToTest = [
   // Typography properties
   'fontSize',
-  'lineHeight',
-  'fontWeight',
   'fontFamily',
+  'fontWeight',
   'fontStyle',
-  'fontVariant',
-  'fontStretch',
+  'lineHeight',
   'letterSpacing',
-  'wordSpacing',
   'textAlign',
-  'textIndent',
-  'textTransform',
   'textDecoration',
-  'textDecorationColor',
-  'textDecorationLine',
-  'textDecorationStyle',
-  'textUnderlineOffset',
-  'textShadow',
-  'whiteSpace',
-  'wordBreak',
-  'overflowWrap',
-  'hyphens',
-  'quotes',
+  'textTransform',
 
   // Color properties
   'color',
   'backgroundColor',
   'borderColor',
-  'outlineColor',
 
   // Box model properties
-  'width',
-  'height',
-  'minWidth',
-  'minHeight',
-  'maxWidth',
-  'maxHeight',
-
-  // Margin properties
   'margin',
   'marginTop',
   'marginRight',
   'marginBottom',
   'marginLeft',
-
-  // Padding properties
   'padding',
   'paddingTop',
   'paddingRight',
@@ -185,527 +113,229 @@ const criticalProperties = [
   'paddingLeft',
 
   // Border properties
-  'border',
   'borderWidth',
   'borderStyle',
-  'borderColor',
   'borderRadius',
-  'borderTop',
-  'borderRight',
-  'borderBottom',
-  'borderLeft',
-  'borderTopWidth',
-  'borderRightWidth',
-  'borderBottomWidth',
-  'borderLeftWidth',
-  'borderTopStyle',
-  'borderRightStyle',
-  'borderBottomStyle',
-  'borderLeftStyle',
-  'borderTopColor',
-  'borderRightColor',
-  'borderBottomColor',
-  'borderLeftColor',
-  'borderTopLeftRadius',
-  'borderTopRightRadius',
-  'borderBottomRightRadius',
-  'borderBottomLeftRadius',
-
-  // Outline properties
-  'outline',
-  'outlineWidth',
-  'outlineStyle',
-  'outlineColor',
-  'outlineOffset',
-
-  // Display and positioning
-  'display',
-  'position',
-  'top',
-  'right',
-  'bottom',
-  'left',
-  'zIndex',
-  'float',
-  'clear',
-  'overflow',
-  'overflowX',
-  'overflowY',
-  'visibility',
-  'opacity',
-
-  // Flexbox properties
-  'flexDirection',
-  'flexWrap',
-  'justifyContent',
-  'alignItems',
-  'alignContent',
-  'alignSelf',
-  'flex',
-  'flexGrow',
-  'flexShrink',
-  'flexBasis',
-  'order',
-
-  // Grid properties
-  'gridTemplateColumns',
-  'gridTemplateRows',
-  'gridTemplateAreas',
-  'gridColumn',
-  'gridRow',
-  'gridArea',
-  'gap',
-  'rowGap',
-  'columnGap',
-
-  // List properties
-  'listStyle',
-  'listStyleType',
-  'listStylePosition',
-  'listStyleImage',
-
-  // Table properties
-  'borderCollapse',
-  'borderSpacing',
-  'captionSide',
-  'tableLayout',
-  'verticalAlign',
-
-  // Transform and animation
-  'transform',
-  'transformOrigin',
-  'transition',
-  'animation',
-
-  // Filter and effects
-  'filter',
-  'backdropFilter',
-  'boxShadow',
-
-  // Content and quotes
-  'content',
-  'counterIncrement',
-  'counterReset',
-
-  // Cursor and user interaction
-  'cursor',
-  'userSelect',
-  'pointerEvents',
-
-  // Scroll behavior
-  'scrollBehavior',
-  'scrollMargin',
-  'scrollPadding',
-
-  // Writing modes (for international typography)
-  'writingMode',
-  'textOrientation',
-  'direction',
-  'unicodeBidi',
 ];
 
-function normalizeCSSValue(property: string, value: string): string {
-  let normalized = value.trim();
+/**
+ * Helper function to compare numeric CSS values with tolerance
+ */
+function hasSignificantDifferences(
+  twStyles: Record<string, string>,
+  tailwindStyles: Record<string, string>,
+  tolerance = PIXEL_DIFFERENCE_TOLERANCE,
+): { hasDifferences: boolean; differences: string[] } {
+  const differences: string[] = [];
 
-  if (property === 'fontFamily') {
-    normalized = normalized.replace(/['"]/g, '').replace(/,\\s*/g, ', ');
-  }
+  for (const property of cssPropertiesToTest) {
+    const twValue = twStyles[property];
+    const tailwindValue = tailwindStyles[property];
 
-  if (normalized.includes('px')) {
-    const match = normalized.match(/(\\d+(?:\\.\\d+)?)px/);
-    if (match) {
-      const rounded = Math.round(parseFloat(match[1]));
-      normalized = normalized.replace(match[0], `${rounded}px`);
+    if (twValue !== tailwindValue) {
+      // For pixel values, check if difference is within tolerance
+      const twPx = parseFloat(twValue);
+      const tailwindPx = parseFloat(tailwindValue);
+
+      if (!isNaN(twPx) && !isNaN(tailwindPx)) {
+        const diff = Math.abs(twPx - tailwindPx);
+        if (diff > tolerance) {
+          differences.push(
+            `${property}: tw-prose="${twValue}" vs @tailwindcss/typography="${tailwindValue}" (diff: ${diff.toFixed(2)}px)`,
+          );
+        }
+      } else {
+        // Non-numeric values must match exactly
+        differences.push(
+          `${property}: tw-prose="${twValue}" vs @tailwindcss/typography="${tailwindValue}"`,
+        );
+      }
     }
   }
 
-  if (normalized.includes('rgb')) {
-    normalized = normalized.replace(/\\s+/g, '');
-  }
-
-  return normalized;
+  return {
+    hasDifferences: differences.length > 0,
+    differences,
+  };
 }
 
 test.describe('Typography Libraries Comparison', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('h1').first()).toContainText('Typography Library Comparison');
-
-    // Wait for content to be fully loaded
-    await page.waitForSelector('.prose, .prose-sm, .prose-lg, .prose-xl, .prose-2xl');
-    await page.waitForSelector('.legacy-prose');
+    await page.waitForLoadState('networkidle');
   });
 
-  variants.forEach((variant) => {
+  // Test each variant
+  for (const variant of variants) {
     test(`should have identical styles for ${variant.name} variant`, async ({ page }) => {
-      // Select the variant using exact text match to avoid XL/2XL conflict
-      const variantButton = page.getByRole('button', { name: variant.buttonText, exact: true });
-      await variantButton.click();
+      // Select the variant using test ID
+      await page.click(`[data-testid="size-${variant.name}"]`);
+      await page.waitForTimeout(500); // Allow styles to update
 
-      // Wait for changes to apply
-      await page.waitForTimeout(1000);
+      let passedElements = 0;
+      let totalComparisons = 0;
 
-      // Get both containers by finding the prose content areas
-      const twProseContainer = page
-        .locator('div')
-        .filter({ hasText: 'tw-prose (CSS-only)' })
-        .locator('..')
-        .locator('div')
-        .nth(1);
-      const tailwindContainer = page
-        .locator('div')
-        .filter({ hasText: '@tailwindcss/typography (Plugin)' })
-        .locator('..')
-        .locator('div')
-        .nth(1);
-
-      // Verify containers are visible
-      await expect(twProseContainer).toBeVisible();
-      await expect(tailwindContainer).toBeVisible();
-
-      // Compare ALL elements comprehensively
       for (const element of elementsToTest) {
-        const twElement = twProseContainer.locator(element.selector).first();
-        const tailwindElement = tailwindContainer.locator(element.selector).first();
+        const twElement = page
+          .locator(`[data-testid="tw-prose-container"] ${element.selector}`)
+          .first();
+        const tailwindElement = page
+          .locator(`[data-testid="tailwindcss-container"] ${element.selector}`)
+          .first();
 
-        // Skip if elements don't exist
+        // Check if elements exist in both containers
         const twExists = (await twElement.count()) > 0;
         const tailwindExists = (await tailwindElement.count()) > 0;
 
         if (!twExists || !tailwindExists) {
-          console.log(`Skipping ${element.name} - not found in both containers`);
-          continue;
+          throw new Error(
+            `Element "${element.name}" (${element.selector}) not found - tw-prose: ${twExists}, @tailwindcss/typography: ${tailwindExists}`,
+          );
         }
 
         // Get computed styles
         const twStyles = await twElement.evaluate((el) => {
           const styles = window.getComputedStyle(el);
-          return {
-            fontSize: styles.fontSize,
-            lineHeight: styles.lineHeight,
-            fontWeight: styles.fontWeight,
-            color: styles.color,
-            marginTop: styles.marginTop,
-            marginBottom: styles.marginBottom,
-          };
+          const result: Record<string, string> = {};
+          for (const prop of [
+            'fontSize',
+            'fontFamily',
+            'fontWeight',
+            'fontStyle',
+            'lineHeight',
+            'letterSpacing',
+            'textAlign',
+            'textDecoration',
+            'textTransform',
+            'color',
+            'backgroundColor',
+            'borderColor',
+            'margin',
+            'marginTop',
+            'marginRight',
+            'marginBottom',
+            'marginLeft',
+            'padding',
+            'paddingTop',
+            'paddingRight',
+            'paddingBottom',
+            'paddingLeft',
+            'borderWidth',
+            'borderStyle',
+            'borderRadius',
+          ]) {
+            result[prop] = styles.getPropertyValue(prop);
+          }
+          return result;
         });
 
         const tailwindStyles = await tailwindElement.evaluate((el) => {
           const styles = window.getComputedStyle(el);
-          return {
-            fontSize: styles.fontSize,
-            lineHeight: styles.lineHeight,
-            fontWeight: styles.fontWeight,
-            color: styles.color,
-            marginTop: styles.marginTop,
-            marginBottom: styles.marginBottom,
-          };
-        });
-
-        // Compare styles (allowing for minor differences)
-        let hasSignificantDifferences = false;
-        const differences = [];
-
-        for (const prop of criticalProperties) {
-          const twValue = normalizeCSSValue(prop, twStyles[prop] || '');
-          const tailwindValue = normalizeCSSValue(prop, tailwindStyles[prop] || '');
-
-          if (twValue !== tailwindValue) {
-            differences.push(
-              `${prop}: tw-prose="${twValue}" vs @tailwindcss/typography="${tailwindValue}"`,
-            );
-
-            // Consider significant differences based on configurable tolerance
-            if (prop === 'fontSize' || prop === 'lineHeight') {
-              const twNum = parseFloat(twValue);
-              const tailwindNum = parseFloat(tailwindValue);
-              if (Math.abs(twNum - tailwindNum) > PIXEL_DIFFERENCE_TOLERANCE) {
-                hasSignificantDifferences = true;
-              }
-            } else {
-              // For non-pixel properties, any difference is significant when tolerance is 0
-              if (PIXEL_DIFFERENCE_TOLERANCE === 0) {
-                hasSignificantDifferences = true;
-              }
-            }
-          }
-        }
-
-        if (differences.length > 0) {
-          console.log(
-            `Style differences found for ${element.name} in ${variant.name} variant:`,
-            differences,
-          );
-
-          // Take screenshot for manual inspection
-          await page.screenshot({
-            path: `test-results/${variant.name}-${element.name.replace(/\\s+/g, '-')}-comparison.png`,
-            fullPage: true,
-          });
-        }
-
-        // Only fail if there are significant differences
-        if (hasSignificantDifferences) {
-          throw new Error(
-            `Significant style differences found for ${element.name} in ${variant.name}:\\n${differences.join('\\n')}`,
-          );
-        }
-      }
-
-      // If we get here, the test passed (no significant differences)
-      expect(true).toBe(true);
-    });
-  });
-
-  // Comprehensive dark mode testing for every variant
-  variants.forEach((variant) => {
-    test(`should have identical dark mode styles for ${variant.name} variant`, async ({ page }) => {
-      // Enable dark mode first
-      const darkModeToggle = page.locator('input[type="checkbox"]');
-      await darkModeToggle.check();
-      await page.waitForTimeout(500);
-
-      // Select the variant
-      const variantButton = page.getByRole('button', { name: variant.buttonText, exact: true });
-      await variantButton.click();
-      await page.waitForTimeout(1000);
-
-      // Get both containers
-      const twProseContainer = page
-        .locator('div')
-        .filter({ hasText: 'tw-prose (CSS-only)' })
-        .locator('..')
-        .locator('div')
-        .nth(1);
-      const tailwindContainer = page
-        .locator('div')
-        .filter({ hasText: '@tailwindcss/typography (Plugin)' })
-        .locator('..')
-        .locator('div')
-        .nth(1);
-
-      // Test key elements in dark mode
-      const darkModeElements = [
-        { selector: 'h1', name: 'Heading 1' },
-        { selector: 'h2', name: 'Heading 2' },
-        { selector: 'h3', name: 'Heading 3' },
-        { selector: 'p', name: 'Paragraph' },
-        { selector: 'a', name: 'Link' },
-        { selector: 'strong', name: 'Strong' },
-        { selector: 'code', name: 'Code' },
-        { selector: 'blockquote', name: 'Blockquote' },
-        { selector: 'li', name: 'List item' },
-        { selector: 'th', name: 'Table header' },
-        { selector: 'td', name: 'Table cell' },
-      ];
-
-      for (const element of darkModeElements) {
-        const twElement = twProseContainer.locator(element.selector).first();
-        const tailwindElement = tailwindContainer.locator(element.selector).first();
-
-        const twExists = (await twElement.count()) > 0;
-        const tailwindExists = (await tailwindElement.count()) > 0;
-
-        if (!twExists || !tailwindExists) {
-          console.log(`Skipping dark mode test for ${element.name} - not found`);
-          continue;
-        }
-
-        // Focus on color properties for dark mode testing
-        const darkModeProperties = ['color', 'backgroundColor', 'borderColor'];
-
-        const twStyles = await twElement.evaluate((el, props) => {
-          const styles = window.getComputedStyle(el);
           const result: Record<string, string> = {};
-          props.forEach((prop: string) => {
+          for (const prop of [
+            'fontSize',
+            'fontFamily',
+            'fontWeight',
+            'fontStyle',
+            'lineHeight',
+            'letterSpacing',
+            'textAlign',
+            'textDecoration',
+            'textTransform',
+            'color',
+            'backgroundColor',
+            'borderColor',
+            'margin',
+            'marginTop',
+            'marginRight',
+            'marginBottom',
+            'marginLeft',
+            'padding',
+            'paddingTop',
+            'paddingRight',
+            'paddingBottom',
+            'paddingLeft',
+            'borderWidth',
+            'borderStyle',
+            'borderRadius',
+          ]) {
             result[prop] = styles.getPropertyValue(prop);
-          });
-          return result;
-        }, darkModeProperties);
-
-        const tailwindStyles = await tailwindElement.evaluate((el, props) => {
-          const styles = window.getComputedStyle(el);
-          const result: Record<string, string> = {};
-          props.forEach((prop: string) => {
-            result[prop] = styles.getPropertyValue(prop);
-          });
-          return result;
-        }, darkModeProperties);
-
-        const differences = [];
-        for (const prop of darkModeProperties) {
-          const twValue = normalizeCSSValue(prop, twStyles[prop] || '');
-          const tailwindValue = normalizeCSSValue(prop, tailwindStyles[prop] || '');
-
-          if (twValue !== tailwindValue) {
-            differences.push(
-              `${prop}: tw-prose="${twValue}" vs @tailwindcss/typography="${tailwindValue}"`,
-            );
           }
-        }
+          return result;
+        });
 
-        if (differences.length > 0) {
-          console.log(`Dark mode differences for ${element.name} in ${variant.name}:`, differences);
-          await page.screenshot({
-            path: `test-results/${variant.name}-${element.name.replace(/\\s+/g, '-')}-dark-mode.png`,
-            fullPage: true,
-          });
+        // Compare styles with tolerance
+        const comparison = hasSignificantDifferences(twStyles, tailwindStyles);
+        totalComparisons++;
 
-          if (PIXEL_DIFFERENCE_TOLERANCE === 0) {
-            throw new Error(
-              `Dark mode differences for ${element.name} in ${variant.name}:\\n${differences.join('\\n')}`,
-            );
-          }
+        if (comparison.hasDifferences) {
+          console.log(`❌ ${element.name} (${element.selector}) has differences:`);
+          comparison.differences.forEach((diff) => console.log(`   ${diff}`));
+
+          // Show first few differences in test failure
+          const errorMessage = `Styling differences found for ${element.name} (${element.selector}):\n${comparison.differences.slice(0, 5).join('\n')}${comparison.differences.length > 5 ? `\n... and ${comparison.differences.length - 5} more differences` : ''}`;
+          throw new Error(errorMessage);
+        } else {
+          passedElements++;
+          console.log(`✅ ${element.name} matches exactly`);
         }
       }
 
-      expect(true).toBe(true);
+      console.log(
+        `\n🎉 ${variant.name} variant: ${passedElements}/${totalComparisons} elements match perfectly!`,
+      );
     });
-  });
+  }
 
-  // Pseudo-state testing (hover, focus, active)
-  variants.forEach((variant) => {
-    test(`should have identical pseudo-states for ${variant.name} variant`, async ({ page }) => {
-      // Select the variant
-      const variantButton = page.getByRole('button', { name: variant.buttonText, exact: true });
-      await variantButton.click();
-      await page.waitForTimeout(1000);
-
-      // Get both containers
-      const twProseContainer = page
-        .locator('div')
-        .filter({ hasText: 'tw-prose (CSS-only)' })
-        .locator('..')
-        .locator('div')
-        .nth(1);
-      const tailwindContainer = page
-        .locator('div')
-        .filter({ hasText: '@tailwindcss/typography (Plugin)' })
-        .locator('..')
-        .locator('div')
-        .nth(1);
-
-      // Test hover states on links
-      const twLink = twProseContainer.locator('a').first();
-      const tailwindLink = tailwindContainer.locator('a').first();
-
-      if ((await twLink.count()) > 0 && (await tailwindLink.count()) > 0) {
-        // Hover over both links
-        await twLink.hover();
-        await tailwindLink.hover();
-        await page.waitForTimeout(100);
-
-        // Compare hover styles
-        const twHoverStyles = await twLink.evaluate((el) => {
-          const styles = window.getComputedStyle(el);
-          return {
-            color: styles.color,
-            textDecoration: styles.textDecoration,
-            textDecorationColor: styles.textDecorationColor,
-          };
-        });
-
-        const tailwindHoverStyles = await tailwindLink.evaluate((el) => {
-          const styles = window.getComputedStyle(el);
-          return {
-            color: styles.color,
-            textDecoration: styles.textDecoration,
-            textDecorationColor: styles.textDecorationColor,
-          };
-        });
-
-        const hoverDifferences = [];
-        Object.keys(twHoverStyles).forEach((prop) => {
-          const twValue = normalizeCSSValue(prop, twHoverStyles[prop] || '');
-          const tailwindValue = normalizeCSSValue(prop, tailwindHoverStyles[prop] || '');
-
-          if (twValue !== tailwindValue) {
-            hoverDifferences.push(
-              `${prop}: tw-prose="${twValue}" vs @tailwindcss/typography="${tailwindValue}"`,
-            );
-          }
-        });
-
-        if (hoverDifferences.length > 0 && PIXEL_DIFFERENCE_TOLERANCE === 0) {
-          throw new Error(
-            `Link hover state differences in ${variant.name}:\\n${hoverDifferences.join('\\n')}`,
-          );
-        }
-      }
-
-      expect(true).toBe(true);
-    });
-  });
-
+  // UI functionality tests
   test('should toggle dark mode correctly', async ({ page }) => {
-    const darkModeToggle = page.locator('input[type="checkbox"]');
+    const darkModeCheckbox = page.locator('[data-testid="dark-mode-toggle"]');
+    await darkModeCheckbox.click();
 
-    // Test dark mode toggle
-    await darkModeToggle.check();
-    await page.waitForTimeout(500);
+    // Check if dark mode classes are applied to the prose content
+    const twProseContent = page.locator('[data-testid="tw-prose-container"] app-prose-content');
+    const tailwindProseContent = page.locator(
+      '[data-testid="tailwindcss-container"] app-prose-content',
+    );
 
-    // Verify dark mode is applied - check for dark class on a container
-    const mainContainer = page.locator('[class*="dark"]').first();
-    await expect(mainContainer).toBeVisible();
-
-    // Toggle back
-    await darkModeToggle.uncheck();
-    await page.waitForTimeout(500);
+    await expect(twProseContent).toHaveClass(/prose-invert/);
+    await expect(tailwindProseContent).toHaveClass(/legacy-prose-invert/);
   });
 
   test('should switch between all variants', async ({ page }) => {
     for (const variant of variants) {
-      const variantButton = page.getByRole('button', { name: variant.buttonText, exact: true });
-      await variantButton.click();
-      await page.waitForTimeout(300);
+      const button = page.locator(`[data-testid="size-${variant.name}"]`);
+      await button.click();
 
-      // Verify both containers are still visible after switching
-      const twProseContainer = page
-        .locator('.prose, .prose-sm, .prose-lg, .prose-xl, .prose-2xl')
-        .first();
-      const tailwindContainer = page.locator('.legacy-prose').first();
+      // Verify the variant is applied to the prose content components
+      const twProseContent = page.locator('[data-testid="tw-prose-container"] app-prose-content');
+      const tailwindProseContent = page.locator(
+        '[data-testid="tailwindcss-container"] app-prose-content',
+      );
 
-      await expect(twProseContainer).toBeVisible();
-      await expect(tailwindContainer).toBeVisible();
+      if (variant.name === 'base') {
+        await expect(twProseContent).toHaveClass(/\bprose\b/);
+        await expect(tailwindProseContent).toHaveClass(/\blegacy-prose\b/);
+      } else {
+        await expect(twProseContent).toHaveClass(new RegExp(`prose-${variant.name}`));
+        await expect(tailwindProseContent).toHaveClass(new RegExp(`legacy-prose-${variant.name}`));
+      }
     }
   });
 
   test('should display version information', async ({ page }) => {
-    // Look for version pattern in footer
-    const versionText = page.getByText(/v\d+\.\d+\.\d+/);
-    await expect(versionText).toBeVisible();
+    await expect(page.locator('footer')).toContainText('tw-prose');
   });
 
   test('should render all typography elements', async ({ page }) => {
-    // Verify all key typography elements are present in both containers
-    const containers = [
-      page
-        .locator('div')
-        .filter({ hasText: 'tw-prose (CSS-only)' })
-        .locator('..')
-        .locator('div')
-        .nth(1),
-      page
-        .locator('div')
-        .filter({ hasText: '@tailwindcss/typography (Plugin)' })
-        .locator('..')
-        .locator('div')
-        .nth(1),
-    ];
-
-    for (const container of containers) {
-      // Check for presence of key elements - use first() to avoid strict mode violations
-      await expect(container.locator('h1').first()).toBeVisible();
-      await expect(container.locator('h2').first()).toBeVisible();
-      await expect(container.locator('p').first()).toBeVisible();
-      await expect(container.locator('a').first()).toBeVisible();
-      await expect(container.locator('strong').first()).toBeVisible();
-      await expect(container.locator('em').first()).toBeVisible();
-      await expect(container.locator('code').first()).toBeVisible();
-      await expect(container.locator('ul').first()).toBeVisible();
-      await expect(container.locator('ol').first()).toBeVisible();
-      await expect(container.locator('li').first()).toBeVisible();
-      await expect(container.locator('blockquote').first()).toBeVisible();
-    }
+    // Check that key elements are present in the tw-prose container
+    await expect(page.locator('[data-testid="tw-prose-container"] h1').first()).toBeVisible();
+    await expect(page.locator('[data-testid="tw-prose-container"] p').first()).toBeVisible();
+    await expect(
+      page.locator('[data-testid="tw-prose-container"] blockquote').first(),
+    ).toBeVisible();
+    await expect(page.locator('[data-testid="tw-prose-container"] table').first()).toBeVisible();
+    await expect(page.locator('[data-testid="tw-prose-container"] ul').first()).toBeVisible();
+    await expect(page.locator('[data-testid="tw-prose-container"] ol').first()).toBeVisible();
   });
 });

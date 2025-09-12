@@ -35,7 +35,7 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
               </div>
             </div>
             
-            <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white dark:bg-gray-800">
+            <div id="tw-prose-container" data-testid="tw-prose-container" class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white dark:bg-gray-800">
               <app-prose-content 
                 [cssClasses]="getTwProseClasses()"
               />
@@ -53,7 +53,7 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
               </div>
             </div>
             
-            <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white dark:bg-gray-800">
+            <div id="tailwindcss-container" data-testid="tailwindcss-container" class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white dark:bg-gray-800">
               <app-prose-content 
                 [cssClasses]="getTailwindTypographyClasses()"
               />
