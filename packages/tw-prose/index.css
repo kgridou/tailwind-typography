@@ -205,7 +205,7 @@
     overflow-x: auto;
     font-weight: var(--font-weight-normal);
     font-size: var(--text-sm);
-    line-height: calc(var(--spacing) * 6);
+    line-height: var(--text-sm--line-height);
     margin-top: calc(var(--spacing) * 7);
     margin-bottom: calc(var(--spacing) * 7);
     border-radius: calc(var(--spacing) * 2);
@@ -476,7 +476,7 @@
     ) {
     color: var(--tw-prose-captions);
     font-size: var(--text-sm);
-    line-height: calc(var(--spacing) * 5);
+    line-height: var(--text-sm--line-height);
     margin-top: calc(var(--spacing) * 3);
   }
 
@@ -488,7 +488,7 @@
     margin-top: calc(var(--spacing) * 8);
     margin-bottom: calc(var(--spacing) * 8);
     font-size: var(--text-sm);
-    line-height: calc(var(--spacing) * 6);
+    line-height: var(--text-sm--line-height);
   }
 
   & :where(thead):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
