@@ -118,7 +118,7 @@ The deployment happens automatically:
 | Size Variants     | ✓ sm, lg, xl, 2xl | ✓ sm, lg, xl, 2xl                 |
 | Dark Mode         | ✓ prose-invert    | ✓ Color variants                  |
 | Element Modifiers | ✗ Not available   | ✓ prose-headings:, prose-p:, etc. |
-| Color Themes      | ✗ Not available   | ✓ prose-red, prose-blue, etc.     |
+| Color Themes      | ✓ with @theme     | ✓ prose-red, prose-blue, etc.     |
 
 ### Class Names
 

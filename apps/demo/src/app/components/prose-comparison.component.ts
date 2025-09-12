@@ -144,8 +144,8 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
                     Color Themes
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600 dark:text-red-400">
-                    ✗ Not available
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 dark:text-green-400">
+                    ✓ with @theme
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 dark:text-green-400">
                     ✓ prose-red, prose-blue, etc.
