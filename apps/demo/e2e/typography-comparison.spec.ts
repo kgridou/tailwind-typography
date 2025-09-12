@@ -630,8 +630,7 @@ test.describe('Typography Libraries Comparison', () => {
 
   // Test CSS custom properties and theming
   test('should have correct CSS custom properties', async ({ page }) => {
-    const twContainer = page.locator('[data-testid="tw-prose-container"]');
-    const tailwindContainer = page.locator('[data-testid="tailwindcss-container"]');
+    const twProseContent = page.locator('[data-testid="tw-prose-container"] app-prose-content');
 
     const customProperties = [
       '--tw-prose-body',
@@ -643,11 +642,10 @@ test.describe('Typography Libraries Comparison', () => {
     ];
 
     for (const property of customProperties) {
-      const twValue = await twContainer.evaluate((el, prop) => {
+      const twValue = await twProseContent.evaluate((el, prop) => {
         return window.getComputedStyle(el).getPropertyValue(prop);
       }, property);
 
-      // Note: The tailwind container uses legacy-prose which may not have the same custom properties
       // This test ensures our tw-prose has the expected custom properties defined
       expect(twValue).toBeTruthy();
       console.log(`✅ Custom property ${property} is defined: ${twValue}`);
