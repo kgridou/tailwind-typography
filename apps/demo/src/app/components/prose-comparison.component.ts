@@ -124,7 +124,7 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
                     ✓ prose-invert
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 dark:text-green-400">
-                    ✓ prose-invert or Color variants
+                    ✓ prose-invert and Color variants
                   </td>
                 </tr>
                 <tr>
