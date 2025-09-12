@@ -1,4 +1,11 @@
-import { Component, output, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  output,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
+import { DarkModeService } from '../services/dark-mode.service';
 
 export type ProseSize = 'base' | 'sm' | 'lg' | 'xl' | '2xl';
 export type ProseLibrary = 'tw-prose' | 'tailwind-typography';
@@ -83,6 +90,7 @@ export interface ProseSettings {
 })
 export class ProseSelectorComponent {
   settingsChange = output<ProseSettings>();
+  private darkModeService = inject(DarkModeService);
 
   private _settings: ProseSettings = {
     library: 'tw-prose',
@@ -99,6 +107,7 @@ export class ProseSelectorComponent {
 
   protected toggleDarkMode() {
     this._settings = { ...this._settings, darkMode: !this._settings.darkMode };
+    this.darkModeService.setDark(this._settings.darkMode);
     this.settingsChange.emit(this._settings);
   }
 
