@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, output, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 export type ProseSize = 'base' | 'sm' | 'lg' | 'xl' | '2xl';
 export type ProseLibrary = 'tw-prose' | 'tailwind-typography';
@@ -11,6 +11,8 @@ export interface ProseSettings {
 
 @Component({
   selector: 'app-prose-selector',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-sm">
       <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">

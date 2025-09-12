@@ -1,10 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { ProseContentComponent } from './prose-content.component';
 import { ProseSelectorComponent, type ProseSettings } from './prose-selector.component';
 
 @Component({
   selector: 'app-prose-comparison',
   imports: [ProseContentComponent, ProseSelectorComponent],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div [class.dark]="currentSettings().darkMode" class="bg-white dark:bg-gray-900 transition-colors">
       <div class="container mx-auto px-4 py-8">

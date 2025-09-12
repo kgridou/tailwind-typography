@@ -1,7 +1,9 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-prose-content',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <h1>Typography Test Document</h1>
     <p class="lead">This comprehensive document tests all typography elements supported by both tw-prose and @tailwindcss/typography plugins.</p>
