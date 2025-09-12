@@ -34,7 +34,7 @@ jobs:
         working-directory: apps/demo
 
       - name: Run Playwright tests
-        run: npm run test:playwright
+        run: npx playwright test --project=chromium
         working-directory: apps/demo
         env:
           CI: true
