@@ -46,7 +46,7 @@
 
   color: var(--tw-prose-body);
   max-width: 65ch;
-  font-size: 1rem;
+  font-size: var(--text-base);
   line-height: 1.75;
 
   & :where(p):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -536,7 +536,7 @@
 }
 
 @utility prose-sm {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   line-height: 1.7142857;
 
   & :where(p):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -801,7 +801,7 @@
 }
 
 @utility prose-lg {
-  font-size: 1.125rem;
+  font-size: var(--text-lg);
   line-height: 1.7777778;
 
   & :where(p):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -1066,7 +1066,7 @@
 }
 
 @utility prose-xl {
-  font-size: 1.25rem;
+  font-size: var(--text-xl);
   line-height: 1.8;
 
   & :where(p):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -1331,7 +1331,7 @@
 }
 
 @utility prose-2xl {
-  font-size: 1.5rem;
+  font-size: var(--text-2xl);
   line-height: 1.6666667;
 
   & :where(p):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
