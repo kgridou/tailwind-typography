@@ -37,7 +37,7 @@
   },
   "scripts": {
     "prepare": "husky",
-    "dev": "npm run dev --workspace=apps/demo",
+    "dev": "npm run start --workspace=apps/demo",
     "build": "npm run build --workspaces --if-present",
     "format": "prettier --write ."
   }
