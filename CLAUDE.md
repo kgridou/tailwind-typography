@@ -19,6 +19,7 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 
 - `npm run build --workspace=packages/tw-prose` - Build only the core library
 - `npm run start --workspace=apps/demo` - Start only the demo app (Angular serve)
+- `npm run update-demo-version` - Sync demo app version with tw-prose package version
 
 ### Demo App (Angular)
 

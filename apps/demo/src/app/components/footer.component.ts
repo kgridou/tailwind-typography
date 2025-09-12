@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TW_PROSE_VERSION } from '../constants/version';
 
 @Component({
   selector: 'app-footer',
@@ -132,7 +133,6 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   protected getPackageVersion(): string {
-    // In a real app, this would come from package.json or environment
-    return '0.0.6';
+    return TW_PROSE_VERSION;
   }
 }

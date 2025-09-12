@@ -39,6 +39,7 @@
     "prepare": "husky",
     "dev": "npm run start --workspace=apps/demo",
     "build": "npm run build --workspaces --if-present",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "update-demo-version": "npm run update-version --workspace=apps/demo"
   }
 }

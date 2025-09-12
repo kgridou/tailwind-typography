@@ -110,10 +110,10 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
                     Size Variants
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 dark:text-green-400">
-                    ✓ sm, lg, xl, 2xl
+                    ✓ base, sm, lg, xl, 2xl
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 dark:text-green-400">
-                    ✓ sm, lg, xl, 2xl
+                    ✓ base, sm, lg, xl, 2xl
                   </td>
                 </tr>
                 <tr class="bg-gray-50 dark:bg-gray-700/50">
@@ -124,7 +124,7 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
                     ✓ prose-invert
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 dark:text-green-400">
-                    ✓ Color variants
+                    ✓ prose-invert or Color variants
                   </td>
                 </tr>
                 <tr>
