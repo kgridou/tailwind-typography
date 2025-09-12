@@ -6,7 +6,7 @@ import { TW_PROSE_VERSION } from '../constants/version';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <footer class="border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 mt-16">
+    <footer class="border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
       <div class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Project Info -->

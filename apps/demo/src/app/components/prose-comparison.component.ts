@@ -8,7 +8,7 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div [class.dark]="currentSettings().darkMode" class="bg-white dark:bg-gray-900 transition-colors">
+    <div [class.dark]="currentSettings().darkMode" class="bg-white dark:bg-gray-900 transition-colors pb-16">
       <div class="container mx-auto px-4 py-8">
         <header class="text-center mb-8">
           <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
@@ -36,9 +36,9 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
                 Classes: {{ getTwProseClasses() }}
               </div>
             </div>
-            
+
             <div id="tw-prose-container" data-testid="tw-prose-container" class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white dark:bg-gray-800">
-              <app-prose-content 
+              <app-prose-content
                 [cssClasses]="getTwProseClasses()"
               />
             </div>
@@ -54,9 +54,9 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
                 Classes: {{ getTailwindTypographyClasses() }}
               </div>
             </div>
-            
+
             <div id="tailwindcss-container" data-testid="tailwindcss-container" class="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white dark:bg-gray-800">
-              <app-prose-content 
+              <app-prose-content
                 [cssClasses]="getTailwindTypographyClasses()"
               />
             </div>
@@ -68,7 +68,7 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">
             Feature Comparison
           </h2>
-          
+
           <div class="overflow-x-auto">
             <table class="w-full bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
               <thead class="bg-gray-50 dark:bg-gray-700">
