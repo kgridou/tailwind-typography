@@ -43,7 +43,9 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 
 ### Reference Files
 
-- `tailwind-v4-variables.md` - Complete reference of Tailwind CSS v4 variables (colors, spacing, typography, etc.)
+- `docs/tailwind-v4-variables.md` - Complete reference of Tailwind CSS v4 variables (colors, spacing, typography, etc.)
+- `docs/TYPOGRAPHY_MIGRATION.md` - Migration guide for converting from official Tailwind Typography plugin to custom implementation
+- `docs/typography.css` - Official Tailwind Typography plugin CSS output for reference
 
 ## Code Architecture
 
@@ -82,6 +84,7 @@ The `index.css` file (872 lines) is organized using Tailwind v4's `@utility` dir
 - **Styling Architecture**: Uses Tailwind v4's `@utility` directive instead of traditional CSS classes
 - **Theme System**: Leverages CSS custom properties with Tailwind v4 color variables (--color-gray-\*)
 - **Package Dependencies**: Demo app uses local file dependency (`file:../../packages/tw-prose`)
+- **Migration Process**: Uses `docs/TYPOGRAPHY_MIGRATION.md` guide for converting official plugin styles to custom implementation
 
 ### Build Process
 
