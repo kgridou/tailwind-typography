@@ -1,16 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ProseComparisonComponent } from './components/prose-comparison.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ProseComparisonComponent],
   template: `
-    <h1>Welcome to {{ title() }}!</h1>
-
+    <app-prose-comparison />
     <router-outlet />
   `,
   styles: [],
 })
-export class App {
-  protected readonly title = signal('demo');
-}
+export class App {}

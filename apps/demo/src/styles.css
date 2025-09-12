@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss';
+@import '../../../packages/tw-prose/index.css';
+
+@config "../tailwind.config.js";
+
+@custom-variant dark (&:where(.dark, .dark *));
