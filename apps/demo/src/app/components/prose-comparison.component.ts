@@ -6,7 +6,7 @@ import { ProseSelectorComponent, type ProseSettings } from './prose-selector.com
   selector: 'app-prose-comparison',
   imports: [ProseContentComponent, ProseSelectorComponent],
   template: `
-    <div [class.dark]="currentSettings().darkMode" class="min-h-screen bg-white dark:bg-gray-900 transition-colors">
+    <div [class.dark]="currentSettings().darkMode" class="bg-white dark:bg-gray-900 transition-colors">
       <div class="container mx-auto px-4 py-8">
         <header class="text-center mb-8">
           <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
