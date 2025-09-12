@@ -58,7 +58,7 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 
 ### CSS Structure
 
-The `index.css` file (872 lines) is organized using Tailwind v4's `@utility` directive as follows:
+The `index.css` file (871 lines) is organized using Tailwind v4's `@utility` directive as follows:
 
 1. **Base Prose Utility** (lines 8-627) - `@utility prose` with comprehensive styling for:
    - CSS custom properties for light/dark theme variables (lines 10-47)
@@ -86,18 +86,24 @@ The `index.css` file (872 lines) is organized using Tailwind v4's `@utility` dir
 
 - **Monorepo Structure**: Uses npm workspaces with `packages/*` and `apps/*` pattern
 - **Core Library Build**: Simple Node.js script copies `index.css` to `dist/index.css` for publishing
-- **Demo App**: Vite-powered with Tailwind CSS v4 via `@tailwindcss/vite` plugin integration
+- **Demo App**: Angular 20.2.0 application with Tailwind CSS v4 via `@tailwindcss/postcss` plugin
 - **Code Quality**: Husky pre-commit hooks run `lint-staged` for automatic Prettier formatting
 - **Styling Architecture**: Uses Tailwind v4's `@utility` directive instead of traditional CSS classes
 - **Theme System**: Leverages CSS custom properties with Tailwind v4 color variables (--color-gray-\*)
-- **Package Dependencies**: Demo app uses local file dependency (`file:../../packages/tw-prose`)
+- **Package Dependencies**: Angular demo app has independent dependencies including Angular CLI and testing framework
 - **Migration Process**: Uses `docs/TYPOGRAPHY_MIGRATION.md` guide for converting official plugin styles to custom implementation
 
 ### Build Process
 
 - **Library**: `npm run build --workspace=packages/tw-prose` copies source to dist folder
-- **Demo**: Standard Vite build process with Tailwind v4 processing
+- **Demo**: Angular CLI build process (`ng build`) with Tailwind CSS v4 processing via PostCSS
 - **Publishing**: `prepublishOnly` script ensures dist folder exists before npm publish
+
+### Testing
+
+- **Demo App**: Uses Karma test runner with Jasmine framework (`ng test`)
+- **Coverage**: Karma coverage reports available
+- **E2E**: Angular CLI supports e2e testing framework setup
 
 # important-instruction-reminders
 
