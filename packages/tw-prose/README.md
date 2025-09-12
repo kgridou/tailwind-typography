@@ -52,14 +52,14 @@ npm install tw-prose
 
 **Base class (always required):**
 
-- `.prose` - Default typography styling (1rem base, 1.75 line-height)
+- `.prose` - Default typography styling
 
 **Size variants (use with `.prose`):**
 
-- `.prose prose-sm` - Small/compact typography (0.875rem base, 1.714 line-height)
-- `.prose prose-lg` - Large typography (1.125rem base, 1.778 line-height)
-- `.prose prose-xl` - Extra large typography (1.25rem base, 1.8 line-height)
-- `.prose prose-2xl` - 2X large typography (1.5rem base, 1.667 line-height)
+- `.prose prose-sm` - Small/compact typography
+- `.prose prose-lg` - Large typography
+- `.prose prose-xl` - Extra large typography
+- `.prose prose-2xl` - 2X large typography
 
 **Theme variants:**
 
