@@ -5,16 +5,60 @@ CSS-only version of Tailwind Typography plugin for Tailwind CSS v4 with all pros
 ## Installation
 
 ```bash
-npm install tw-prose
+npm install --save-dev tw-prose
 ```
 
 ## Usage
 
 ### With Tailwind CSS v4
 
+Add the imports and required theme configuration to your CSS file:
+
 ```css
 @import "tailwindcss";
 @import "tw-prose";
+
+@theme {
+  /* Required theme variables for tw-prose */
+  --tw-prose-body: var(--color-gray-700);
+  --tw-prose-headings: var(--color-gray-900);
+  --tw-prose-lead: var(--color-gray-600);
+  --tw-prose-links: var(--color-gray-900);
+  --tw-prose-bold: var(--color-gray-900);
+  --tw-prose-counters: var(--color-gray-500);
+  --tw-prose-bullets: var(--color-gray-400);
+  --tw-prose-hr: var(--color-gray-200);
+  --tw-prose-quotes: var(--color-gray-900);
+  --tw-prose-quote-borders: var(--color-gray-200);
+  --tw-prose-captions: var(--color-gray-500);
+  --tw-prose-kbd: var(--color-gray-900);
+  --tw-prose-kbd-shadows: var(--color-gray-200);
+  --tw-prose-code: var(--color-gray-900);
+  --tw-prose-pre-code: var(--color-gray-200);
+  --tw-prose-pre-bg: var(--color-gray-800);
+  --tw-prose-th-borders: var(--color-gray-300);
+  --tw-prose-td-borders: var(--color-gray-200);
+
+  /* Dark theme variables (for prose-invert) */
+  --tw-prose-invert-body: var(--color-gray-300);
+  --tw-prose-invert-headings: var(--color-white);
+  --tw-prose-invert-lead: var(--color-gray-400);
+  --tw-prose-invert-links: var(--color-white);
+  --tw-prose-invert-bold: var(--color-white);
+  --tw-prose-invert-counters: var(--color-gray-400);
+  --tw-prose-invert-bullets: var(--color-gray-600);
+  --tw-prose-invert-hr: var(--color-gray-700);
+  --tw-prose-invert-quotes: var(--color-gray-100);
+  --tw-prose-invert-quote-borders: var(--color-gray-700);
+  --tw-prose-invert-captions: var(--color-gray-400);
+  --tw-prose-invert-kbd: var(--color-white);
+  --tw-prose-invert-kbd-shadows: var(--color-gray-600);
+  --tw-prose-invert-code: var(--color-white);
+  --tw-prose-invert-pre-code: var(--color-gray-300);
+  --tw-prose-invert-pre-bg: rgba(0, 0, 0, 0.5);
+  --tw-prose-invert-th-borders: var(--color-gray-600);
+  --tw-prose-invert-td-borders: var(--color-gray-700);
+}
 ```
 
 ### HTML Usage

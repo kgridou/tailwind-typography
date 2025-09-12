@@ -33,6 +33,13 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 - Git pre-commit hook automatically runs `npx lint-staged` which formats staged files with Prettier
 - `npm run prepare` - Set up Husky git hooks
 
+### Testing
+
+- `npm run test --workspace=apps/demo` - Run Angular unit tests with Karma
+- `npm run test:playwright --workspace=apps/demo` - Run Playwright e2e tests  
+- `npm run test:playwright-ui --workspace=apps/demo` - Run Playwright tests with UI mode
+- `npm run test:playwright-headed --workspace=apps/demo` - Run Playwright tests in headed mode
+
 ## Project Structure
 
 ### Workspace Layout
@@ -104,11 +111,18 @@ The `index.css` file (871 lines) is organized using Tailwind v4's `@utility` dir
 
 - **Demo App**: Uses Karma test runner with Jasmine framework (`ng test`)
 - **Coverage**: Karma coverage reports available
-- **E2E**: Angular CLI supports e2e testing framework setup
+- **E2E**: Playwright testing framework for end-to-end tests (`npm run test:playwright --workspace=apps/demo`)
+
+## Repository
+
+- **GitHub**: https://github.com/gridatek/tailwind-typography
+- **Issues**: https://github.com/gridatek/tailwind-typography/issues
+- **Author**: Khalil LAGRIDA
+- **License**: MIT
 
 # important-instruction-reminders
 
 Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.
 ALWAYS prefer editing an existing file to creating a new one.
-NEVER proactively create documentation files (\*.md) or README files. Only create documentation files if explicitly requested by the User.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
