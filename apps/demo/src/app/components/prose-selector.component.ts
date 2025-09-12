@@ -44,14 +44,6 @@ export interface ProseSettings {
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Dark Mode</span>
           </label>
         </div>
-
-        <!-- Settings Display -->
-        <div class="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded border text-xs">
-          <div class="text-gray-600 dark:text-gray-400">Current Settings:</div>
-          <div class="text-gray-800 dark:text-gray-200 mt-1">
-            {{ getSettingsPreview() }}
-          </div>
-        </div>
       </div>
     </div>
   `,
@@ -85,9 +77,5 @@ export class ProseSelectorComponent {
       return `${baseClasses} bg-blue-600 text-white border-blue-600`;
     }
     return `${baseClasses} bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600`;
-  }
-
-  protected getSettingsPreview(): string {
-    return `Library: ${this._settings.library}, Size: ${this._settings.size}, Dark: ${this._settings.darkMode}`;
   }
 }
