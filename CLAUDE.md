@@ -11,14 +11,21 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 ### Development
 
 - `npm install` - Install all workspace dependencies
-- `npm run dev` - Start the demo app development server
+- `npm run dev` - Start the demo app development server (Angular)
 - `npm run build` - Build all packages and apps
 - `npm run format` - Format all files with Prettier
 
 ### Package Management
 
 - `npm run build --workspace=packages/tw-prose` - Build only the core library
-- `npm run dev --workspace=apps/demo` - Start only the demo app
+- `npm run start --workspace=apps/demo` - Start only the demo app (Angular serve)
+
+### Demo App (Angular)
+
+- `ng serve` - Start Angular development server at http://localhost:4200
+- `ng build` - Build the Angular demo app
+- `ng test` - Run unit tests with Karma
+- `ng generate component component-name` - Generate new Angular components
 
 ### Code Formatting
 
@@ -30,16 +37,16 @@ This is a CSS-only implementation of the Tailwind Typography plugin for Tailwind
 ### Workspace Layout
 
 - `packages/tw-prose/` - Core CSS library package (`tw-prose`)
-- `apps/demo/` - Demo application showcasing all typography variants
+- `apps/demo/` - Angular demo application showcasing all typography variants
 - `package.json` - Workspace root configuration
 - `.husky/` - Git hooks for code formatting
 
 ### Key Files
 
-- `packages/tw-prose/src/index.css` - Source CSS file with all prose styling variants
-- `packages/tw-prose/dist/index.css` - Built/published CSS file
-- `apps/demo/index.html` - Demo page showcasing all typography sizes
-- `apps/demo/src/main.css` - Demo app styles that import the core library
+- `packages/tw-prose/index.css` - Source CSS file with all prose styling variants (871 lines)
+- `packages/tw-prose/dist/index.css` - Built/published CSS file (created during build)
+- `apps/demo/src/index.html` - Demo page showcasing all typography sizes
+- `apps/demo/src/app/` - Angular components and application logic
 
 ### Reference Files
 
