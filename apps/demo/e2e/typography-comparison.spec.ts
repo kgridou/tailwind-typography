@@ -224,7 +224,8 @@ test.describe('Typography Libraries Comparison', () => {
             'borderStyle',
             'borderRadius',
           ]) {
-            result[prop] = styles.getPropertyValue(prop);
+            const value = styles.getPropertyValue(prop) || styles[prop as any] || '';
+            result[prop] = value;
           }
           return result;
         });
@@ -259,7 +260,8 @@ test.describe('Typography Libraries Comparison', () => {
             'borderStyle',
             'borderRadius',
           ]) {
-            result[prop] = styles.getPropertyValue(prop);
+            const value = styles.getPropertyValue(prop) || styles[prop as any] || '';
+            result[prop] = value;
           }
           return result;
         });
